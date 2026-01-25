@@ -31,3 +31,17 @@ nav {
 .nav-items {
   cursor: pointer;
 }
+
+/*Footer*/
+footer{
+    display: grid;
+    text-align: center;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.social-media{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
