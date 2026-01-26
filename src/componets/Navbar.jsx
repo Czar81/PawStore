@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import icon from '../assets/icons/pet-supplies.svg';
+import icon from '/src/assets/icons/pet-supplies.svg';
 
 function Navbar() {
-  const [value, setValue] = useState('start');
+  const [activeView, setActiveView] = useState('start');
 
-  const changeView = (newValue) => {
-    setValue(newValue);
-  };
+  const navItems = [
+    { id: 'start', label: 'Inicio' },
+    { id: 'products', label: 'Productos' },
+    { id: 'contact', label: 'Contacto' }
+  ];
 
   return (
     <nav>
@@ -14,22 +16,21 @@ function Navbar() {
         <img className="nav-icon" src={icon} alt="Dog icon" />
         <h1 id="nav-title">PawStore</h1>
       </div>
-
       <div className="nav-left">
         <ul>
-          <li className="nav-items" onClick={() => changeView('start')}>
-            Inicio
-          </li>
-          <li className="nav-items" onClick={() => changeView('products')}>
-            Productos
-          </li>
-          <li className="nav-items" onClick={() => changeView('contact')}>
-            Contacto
-          </li>
+          {navItems.map((item) => (
+            <li
+              key={item.id}
+              className={`nav-items ${activeView === item.id ? 'nav-items-active' : ''}`}
+              onClick={() => setActiveView(item.id)}
+            >
+              {item.label}
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
   );
 }
 
-export default Navbar
+export default Navbar;
