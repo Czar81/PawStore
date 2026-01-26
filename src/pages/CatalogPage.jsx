@@ -4,7 +4,7 @@ import ProductCard from '../components/ProductCard';
 import productsData from '../data/products.json';
 import NotFound from '../components/NotFound';
 
-function CatalogPage({ setActiveView }) {
+function CatalogPage({ setActiveView, setSelectedProduct }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +22,7 @@ function CatalogPage({ setActiveView }) {
       </main>
     );
   }
-  if (products.length===0) {
+  if (products.length === 0) {
     return (
       <main className="main-text">
         <NotFound
@@ -39,8 +39,10 @@ function CatalogPage({ setActiveView }) {
         {products.map((product) => (
           <ProductCard
             product={product}
+            key={product.id}
             onClick={() => {
               setActiveView('product');
+              setSelectedProduct(product);
             }}
           />
         ))}

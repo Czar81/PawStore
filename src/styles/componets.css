@@ -1,98 +1,98 @@
 * {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /*Header*/
 .nav-icon {
-    width: 36px;
+  width: 36px;
 }
 
 h1 {
-    color: var(--clr-primary);
-    font-size: 1.5rem;
-    font-weight: 800;
+  color: var(--clr-primary);
+  font-size: 1.5rem;
+  font-weight: 800;
 }
 
 .nav-items {
-    color: var(--clr-text-dark);
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-        background-color 0.25s ease,
-        color 0.25s ease,
-        transform 0.2s ease;
+  color: var(--clr-text-dark);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
 }
 
 .nav-items:hover {
-    color: var(--clr-text);
+  color: var(--clr-text);
 }
 
 .nav-items:active {
-    color: var(--clr-text-dark);
+  color: var(--clr-text-dark);
 }
 
 .nav-items-active {
-    color: var(--clr-primary);
-    pointer-events: none;
+  color: var(--clr-primary);
+  pointer-events: none;
 }
 /*Footer*/
-.social-media-link{
-    color: var(--clr-terciary);
+.social-media-link {
+  color: var(--clr-terciary);
 }
 
-.social-media-link:hover{
-    color: var(--clr-secondary);
+.social-media-link:hover {
+  color: var(--clr-secondary);
 }
 
 nav,
 footer {
-    box-shadow: 0 0 6px var(--clr-shadow);
+  box-shadow: 0 0 6px var(--clr-shadow);
 }
 
 /*Main*/
-.main-text>h2 {
-    font-size: 3rem;
-    font-weight: 800;
+.main-text > h2 {
+  font-size: 3rem;
+  font-weight: 800;
 }
 
 .main-text p {
-    color: var(--clr-text);
-    font-size: 1.2rem;
-    font-weight: 500;
+  color: var(--clr-text);
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .main-text small {
-    color: var(--clr-text);
-    margin-top: 2rem;
+  color: var(--clr-text);
+  margin-top: 2rem;
 }
-.main-text .emoji{
-    width: 52px;
+.main-text .emoji {
+  width: 52px;
 }
-.main-text .title{
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--clr-text-dark);
+.main-text .title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--clr-text-dark);
 }
 /*Btns*/
 .btn-lilac {
-    background-color: var(--clr-primary);
-    color: var(--clr-text-light);
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition:
-        background-color 0.25s ease,
-        color 0.25s ease,
-        transform 0.2s ease;
+  background-color: var(--clr-primary);
+  color: var(--clr-text-light);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
 }
 
 .btn-lilac:hover {
-    background-color: var(--clr-secondary);
+  background-color: var(--clr-secondary);
 }
 
 .btn-lilac:active {
-    background-color: var(--clr-primary);
+  background-color: var(--clr-primary);
 }
 
 /*Spinner*/
@@ -103,9 +103,9 @@ footer {
   animation: spin 0.8s linear infinite;
 }
 
-.spinner-text{
-    font-size: 2rem;
-    font-weight: 700;
+.spinner-text {
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 @keyframes spin {
@@ -118,30 +118,30 @@ footer {
 }
 
 /*Card*/
-.product-card{
-    min-width: 400px;
-    box-shadow: 0 0 5px var(--clr-shadow);
-    border-radius: 5px;
+.product-card {
+  min-width: 400px;
+  box-shadow: 0 0 5px var(--clr-shadow);
+  border-radius: 5px;
 }
 
-.product-card img{
-    width: 100%;
-    height: 300px;
-    border-radius: 5px 5px 0 0;
-    object-fit: cover;
+.product-card img {
+  width: 100%;
+  height: 300px;
+  border-radius: 5px 5px 0 0;
+  object-fit: cover;
 }
 
 .product-card .price {
-    color: var(--clr-primary);
-    font-size: 1.2rem;
-    font-weight: 600;
+  color: var(--clr-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
 }
-.product-card .category{
-    color: var(--clr-text);
-    font-size: 1rem;
+.product-card .category {
+  color: var(--clr-text);
+  font-size: 1rem;
 }
-.product-card .btn-lilac{
-    margin-top: 1rem
+.product-card .btn-lilac {
+  margin-top: 1rem;
 }
 
 /*Input*/
@@ -176,15 +176,15 @@ footer {
   opacity: 0.6;
   pointer-events: none;
 }
-.checkbox-wrapper{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
+.checkbox-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
-.checkbox-wrapper label{
-    font-weight: 600;
+.checkbox-wrapper label {
+  font-weight: 600;
 }
-#chk-available{
-    width: 1rem;
-    height: 1rem;
+#chk-available {
+  width: 1rem;
+  height: 1rem;
 }

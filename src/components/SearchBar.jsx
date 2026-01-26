@@ -1,13 +1,9 @@
-import icon from '../assets/icons/hand-lens.svg'
+import icon from '../assets/icons/hand-lens.svg';
 function SearchBar() {
   return (
     <div className="search-bar">
       <div className="search-wrapper">
-         <img
-            src={icon}
-            alt=""
-            className="search-icon"
-            />
+        <img src={icon} alt="" className="search-icon" />
         <input
           className="search"
           type="text"
