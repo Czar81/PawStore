@@ -13,10 +13,10 @@ function StartPage() {
       <button type="button" className="btn-lilac">
         Ver productos
       </button>
-      <p>
+      <small>
         Esta es la página principal de la aplicación. Más adelante aquí se
         podrán mostrar productos destacados.
-      </p>
+      </small>
     </main>
   );
 }

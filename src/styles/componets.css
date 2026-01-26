@@ -1,3 +1,89 @@
-*{
+* {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Header*/
+.nav-icon {
+    width: 36px;
+}
+
+h1 {
+    color: var(--clr-primary);
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.nav-items {
+    color: var(--clr-text-dark);
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.2s ease;
+}
+
+.nav-items:hover {
+    color: var(--clr-text);
+}
+
+.nav-items:active {
+    color: var(--clr-text-dark);
+}
+
+.nav-items-active {
+    color: var(--clr-primary);
+    pointer-events: none;
+}
+/*Footer*/
+.social-media-link{
+    color: var(--clr-terciary);
+}
+
+.social-media-link:hover{
+    color: var(--clr-secondary);
+}
+
+nav,
+footer {
+    box-shadow: 0 0 6px var(--clr-shadow);
+}
+
+/*Main*/
+.main-text>h2 {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.main-text>p {
+    color: var(--clr-text);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.main-text small {
+    color: var(--clr-text);
+    margin-top: 2rem;
+}
+
+/*Btns*/
+.btn-lilac {
+    background-color: var(--clr-primary);
+    color: var(--clr-text-light);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.2s ease;
+}
+
+.btn-lilac:hover {
+    background-color: var(--clr-secondary);
+}
+
+.btn-lilac:active {
+    background-color: var(--clr-primary);
 }

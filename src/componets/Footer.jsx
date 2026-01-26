@@ -3,8 +3,8 @@ function Footer() {
     <footer>
       <small>© PawStore 2025 — Todos los derechos reservados.</small>
       <div className="social-media">
-        <a href="">Instagram</a>
-        <a href="">Facebook</a>
+        <a className="social-media-link" href="">Instagram</a>
+        <a className="social-media-link" href="">Facebook</a>
       </div>
     </footer>
   );
