@@ -1,14 +1,21 @@
-import Navbar from './componets/Navbar';
-import Footer from './componets/Footer';
-import StartPage from './pages/StartPage';
+import { useState } from 'react';
+import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
+import CatalogPage from './pages/CatalogPage';
+import Footer from './components/Footer';
 
 function App() {
+  const [activeView, setActiveView] = useState('start');
+
   return (
     <>
-      <header>
-        <Navbar />
-      </header>
-        <StartPage />
+      <Navbar activeView={activeView} setActiveView={setActiveView} />
+
+      {activeView === 'start' && <HomePage setActiveView={setActiveView} />}
+
+      {activeView === 'products' && (
+        <CatalogPage setActiveView={setActiveView} />
+      )}
       <Footer />
     </>
   );

@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import icon from '/src/assets/icons/pet-supplies.svg';
 
-function Navbar() {
-  const [activeView, setActiveView] = useState('start');
+function Navbar({activeView, setActiveView}) {
 
   const navItems = [
     { id: 'start', label: 'Inicio' },
