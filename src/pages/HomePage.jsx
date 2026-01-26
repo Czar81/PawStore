@@ -1,4 +1,4 @@
-function StartPage() {
+function StartPage({setActiveView}) {
   return (
     <main className="main-text">
       <h2>Bienvenido a PawStore</h2>
@@ -10,7 +10,7 @@ function StartPage() {
         Explora nuestro catálogo para encontrar camas, juguetes, accesorios y
         más.
       </p>
-      <button type="button" className="btn-lilac">
+      <button type="button" className="btn-lilac" onClick={()=>setActiveView('products')}>
         Ver productos
       </button>
       <small>
