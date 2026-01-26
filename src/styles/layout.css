@@ -73,3 +73,11 @@ footer{
     justify-content: center;
     gap: 1rem;
 }
+
+/*Searchbar*/
+.search-bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
