@@ -5,7 +5,7 @@
     "descripcion": "Collar resistente para perros de todos los tamaños.",
     "precio": 8500,
     "categoria": "Perros",
-    "imagen": "https://via.placeholder.com/300x300.png?text=Collar+de+cuero",
+    "imagen": "https://placehold.co/300x200.png?text=Collar+de+cuero",
     "stock": 12
   },
   {
@@ -14,7 +14,7 @@
     "descripcion": "Cama acolchada y cómoda para gatos de interior.",
     "precio": 12000,
     "categoria": "Gatos",
-    "imagen": "https://via.placeholder.com/300x300.png?text=Cama+para+gatos",
+    "imagen": "https://placehold.co/300x200.png?text=Cama+para+gatos",
     "stock": 5
   },
   {
@@ -23,7 +23,7 @@
     "descripcion": "Pelota duradera ideal para juegos al aire libre.",
     "precio": 2500,
     "categoria": "Perros",
-    "imagen": "https://via.placeholder.com/300x300.png?text=Pelota+de+goma",
+    "imagen": "https://placehold.co/300x200.png?text=Pelota+de+goma",
     "stock": 30
   },
   {
@@ -32,7 +32,7 @@
     "descripcion": "Rascador vertical que ayuda a cuidar las uñas de tu gato.",
     "precio": 15000,
     "categoria": "Gatos",
-    "imagen": "https://via.placeholder.com/300x300.png?text=Rascador",
+    "imagen": "https://placehold.co/300x200.png?text=Rascador",
     "stock": 7
   },
   {
@@ -41,7 +41,7 @@
     "descripcion": "Casita resistente para exteriores, ideal para climas lluviosos.",
     "precio": 28000,
     "categoria": "Perros",
-    "imagen": "https://via.placeholder.com/300x300.png?text=Casita",
+    "imagen": "https://placehold.co/300x200.png?text=Casita",
     "stock": 3
   },
   {
@@ -50,7 +50,7 @@
     "descripcion": "Arenero cerrado que ayuda a controlar los olores.",
     "precio": 18000,
     "categoria": "Gatos",
-    "imagen": "https://via.placeholder.com/300x300.png?text=Arenero",
+    "imagen": "https://placehold.co/300x200.png?text=Arenero",
     "stock": 10
   },
   {
@@ -59,7 +59,7 @@
     "descripcion": "Correa de 5 metros ideal para paseos largos.",
     "precio": 7000,
     "categoria": "Perros",
-    "imagen": "https://via.placeholder.com/300x300.png?text=Correa",
+    "imagen": "https://placehold.co/300x200.png?text=Correa",
     "stock": 20
   },
   {
@@ -68,7 +68,7 @@
     "descripcion": "Plato doble para agua y comida, fácil de limpiar.",
     "precio": 5000,
     "categoria": "Accesorios",
-    "imagen": "https://via.placeholder.com/300x300.png?text=Plato+doble",
+    "imagen": "https://placehold.co/300x200.png?text=Plato+doble",
     "stock": 25
   }
 ]
