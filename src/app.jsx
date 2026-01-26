@@ -1,17 +1,14 @@
 import Navbar from './componets/Navbar';
 import Footer from './componets/Footer';
+import StartPage from './pages/StartPage';
+
 function App() {
   return (
     <>
-      <Navbar />
-      <main>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo officia
-          maiores aliquam. Tempore commodi ut nesciunt dolore ipsam obcaecati
-          quia esse ullam natus impedit itaque nobis dolores, inventore beatae
-          dolorum.
-        </p>
-      </main>
+      <header>
+        <Navbar />
+      </header>
+        <StartPage />
       <Footer />
     </>
   );
