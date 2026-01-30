@@ -219,3 +219,33 @@ footer {
 .product-desc small{
   font-style: italic;
 }
+
+/*Admin page*/
+.admin-card >h2{
+  color: var(--clr-text-dark);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.admin-card >p{
+  color: var(--clr-text);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+.dashboard-header > th{
+  text-align: left;
+  color: var(--clr-text);
+}
+.admin-card{
+  box-shadow: 0 0 5px var(--clr-shadow);
+  padding: 1rem;
+  border-radius: 5px;
+}
+.dashboard-actions{
+  text-align: right !important;
+}
+.no-data{
+  text-align: center;
+  color: var(--clr-text);
+  font-size: 1.2rem;
+}
