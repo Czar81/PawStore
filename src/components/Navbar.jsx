@@ -6,6 +6,7 @@ function Navbar({ activeView, setActiveView }) {
     { id: 'start', label: 'Inicio' },
     { id: 'products', label: 'Productos' },
     { id: 'contact', label: 'Contacto' },
+    { id: 'admin', label: 'Administracion' },
   ];
 
   return (
