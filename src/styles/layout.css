@@ -136,3 +136,33 @@ footer {
 .dashboard-cell>button {
   margin-left: 0.5rem;
 }
+
+/*form*/
+
+.form-products,
+.two-on-row>div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.two-on-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.two-on-row>div {
+  width: 50%;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+/*Erro*/
+.alert-message {
+  color: var(--clr-error);
+  font-size: 0.8rem;
+}
