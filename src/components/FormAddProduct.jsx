@@ -10,85 +10,89 @@ function FormAddPorduct() {
   return (
     <form className="form-products" onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="product-name">Nombre</label>
+      {errors.nombre && <span role="alert" className="alert-message">{errors.nombre.message}</span>}
       <input
         type="text"
         name="nombre"
         id="product-name"
-        className="form-input"
+        className={`form-input ${errors.nombre ? 'input-error' : ''}`}
         placeholder="Nombre del producto"
         {...register('nombre', {
           required: 'Campo obligatorio',
         })}
       />
-      {errors.nombre && <span role="alert" className="alert-message">{errors.nombre.message}</span>}
 
       <label htmlFor="product-desc">Descripcion</label>
+      {errors.descripcion && (
+        <span role="alert" className="alert-message">{errors.descripcion.message}</span>
+      )}
       <textarea
         name="descripcion"
         id="product-desc"
-        className="form-input form-textarea"
+        className={`form-input form-textarea ${errors.descripcion ? 'input-error' : ''}`}
         placeholder="Descripcion detallada del producto"
         {...register('descripcion', {
           required: 'Campo obligatorio',
         })}
       ></textarea>
-      {errors.descripcion && (
-        <span role="alert" className="alert-message">{errors.descripcion.message}</span>
-      )}
+      
       <div className="two-on-row">
         <div>
           <label htmlFor="product-price">Precio</label>
+          {errors.precio && (
+        <span role="alert" className="alert-message">{errors.precio.message}</span>
+      )}
           <input
             type="number"
             name="precio"
             id="product-price"
-            className="form-input"
+            className={`form-input ${errors.precio ? 'input-error' : ''}`}
             placeholder="0.00"
             {...register('precio', {
               required: 'Campo obligatorio',
             })}
           />
-          {errors.precio && (
-        <span role="alert" className="alert-message">{errors.precio.message}</span>
-      )}
+          
         </div>
         <div>
           <label htmlFor="product-category">Categoria</label>
+          {errors.categoria && (
+        <span role="alert" className="alert-message">{errors.categoria.message}</span>
+      )}
           <input
             type="text"
             name="categoria"
             id="product-category"
-            className="form-input"
+            className={`form-input ${errors.categoria ? 'input-error' : ''}`}
             placeholder="Categoria del producto (ej. Alimento, Juguetes)"
             {...register('categoria', {
               required: 'Campo obligatorio',
             })}
           />
-          {errors.categoria && (
-        <span role="alert" className="alert-message">{errors.categoria.message}</span>
-      )}
+          
         </div>
       </div>
       <label htmlFor="product-img">URL de la imagen</label>
+      {errors.imagen && (
+        <span role="alert" className="alert-message">{errors.imagen.message}</span>
+      )}
       <input
         type="text"
         name="imagen"
         id="product-img"
-        className="form-input"
-        placeholder="https://placehold.co/300x200.png?text=******"
+        className={`form-input ${errors.imagen ? 'input-error' : ''}`}
+        placeholder="https://placehold.co/300x200.png?text=example"
         {...register('imagen', {
           required: 'Campo obligatorio',
         })}
       />
-        {errors.imagen && (
-        <span role="alert" className="alert-message">{errors.imagen.message}</span>
-      )}
+        
       <label htmlFor="product-stock">Stock</label>
       <input
-        type="text"
+        type="number"
         name="stock"
         id="product-stock"
-        className="form-input"
+        className={`form-input ${errors.stock ? 'input-error' : ''}`}
         placeholder="0"
         {...register('stock', {
           required: 'Campo obligatorio',

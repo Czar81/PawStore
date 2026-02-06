@@ -289,3 +289,10 @@ label {
   min-height: 120px;
   resize: vertical;
 }
+
+.alert-message {
+  color: var(--clr-danger);
+}
+.input-error {
+  border-color: var(--clr-danger);
+}
