@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
-import Spinner from '../components/spinner';
-import ProductCard from '../components/ProductCard';
+import Spinner from '../components/generic/spinner';
+import ProductCard from '../components/product/ProductCard';
 import productsData from '../data/products.json';
-import NotFound from '../components/NotFound';
+import NotFound from '../components/generic/NotFound';
 
 function CatalogPage({ setActiveView, setSelectedProduct }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  async function loadProducts() {
-    setLoading(true);
-    setProducts(productsData);
-    setLoading(false);
-  }
-  loadProducts();
-}, []);
+    async function loadProducts() {
+      setLoading(true);
+      setProducts(productsData);
+      setLoading(false);
+    }
+    loadProducts();
+  }, []);
 
   if (loading) {
     return (

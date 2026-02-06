@@ -1,6 +1,6 @@
-import ProductDashboard from '../components/ProductDashboard';
-import FormAddPorduct from '../components/FormAddProduct';
-import FormEditProduct from '../components/FormEditProduct';
+import ProductDashboard from '../components/product/ProductDashboard';
+import FormAddPorduct from '../components/forms/FormAddProduct';
+import FormEditProduct from '../components/forms/FormEditProduct';
 import { useState } from 'react';
 
 function AdminPage({ setActiveView }) {
@@ -18,7 +18,12 @@ function AdminPage({ setActiveView }) {
         <h2>Agregar un nuevo producto</h2>
         <FormAddPorduct />
       </section>
-      {editingProduct && <FormEditProduct product={editingProduct} onClose={() => setEditingProduct(null)}/>}
+      {editingProduct && (
+        <FormEditProduct
+          product={editingProduct}
+          onClose={() => setEditingProduct(null)}
+        />
+      )}
     </main>
   );
 }

@@ -13,7 +13,11 @@ function ProductPage({ setActiveView, product }) {
           Más adelante aquí se podrá agregar este producto al carrito y
           completar la compra.
         </small>
-        <button className="btn-lilac" type="button" onClick={() => setActiveView('products')}>
+        <button
+          className="btn-lilac"
+          type="button"
+          onClick={() => setActiveView('products')}
+        >
           Volver al catalogo
         </button>
       </div>

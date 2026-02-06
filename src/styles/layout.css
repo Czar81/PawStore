@@ -105,7 +105,7 @@ footer {
 .product-desc {
   width: 50%;
   height: 100%;
-  padding: 1rem 2rem
+  padding: 1rem 2rem;
 }
 
 .img-product {
@@ -125,7 +125,7 @@ footer {
   width: 100%;
 }
 
-.dashboard-header>th {
+.dashboard-header > th {
   padding: 1rem;
 }
 
@@ -133,14 +133,14 @@ footer {
   padding: 0.5rem 1rem;
 }
 
-.dashboard-cell>button {
+.dashboard-cell > button {
   margin-left: 0.5rem;
 }
 
 /*form*/
 
 .form-products,
-.two-on-row>div {
+.two-on-row > div {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -152,7 +152,7 @@ footer {
   gap: 1rem;
 }
 
-.two-on-row>div {
+.two-on-row > div {
   width: 50%;
 }
 

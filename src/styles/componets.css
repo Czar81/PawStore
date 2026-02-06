@@ -51,7 +51,7 @@ footer {
 }
 
 /*Main*/
-.main-text>h2 {
+.main-text > h2 {
   font-size: 3rem;
   font-weight: 800;
 }
@@ -78,7 +78,8 @@ footer {
 }
 
 /*Btns*/
-.btn-lilac, .btn-blank {
+.btn-lilac,
+.btn-blank {
   font-weight: 600;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -89,11 +90,11 @@ footer {
     transform 0.2s ease;
 }
 
-.btn-lilac{
+.btn-lilac {
   background-color: var(--clr-primary);
   color: var(--clr-text-light);
 }
-.btn-blank{
+.btn-blank {
   background-color: transparent;
   color: var(--clr-text);
   border: 1px solid var(--clr-shadow);
@@ -248,20 +249,20 @@ footer {
 }
 
 /*Admin page*/
-.admin-card>h2 {
+.admin-card > h2 {
   color: var(--clr-text-dark);
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
-.admin-card>p {
+.admin-card > p {
   color: var(--clr-text);
   font-size: 1rem;
   margin-bottom: 1.5rem;
 }
 
-.dashboard-header>th {
+.dashboard-header > th {
   text-align: left;
   color: var(--clr-text);
 }
@@ -305,7 +306,7 @@ label {
 .input-error {
   border-color: var(--clr-danger);
 }
-.btn-container{
+.btn-container {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;

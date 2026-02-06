@@ -1,5 +1,5 @@
 import icon from '/src/assets/icons/pet-supplies.svg';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../generic/SearchBar';
 
 function Navbar({ activeView, setActiveView }) {
   const navItems = [

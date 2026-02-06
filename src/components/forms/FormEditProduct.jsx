@@ -79,7 +79,7 @@ function EditProductPage({ product, onClose }) {
           />
 
           <div className="btn-container">
-            <button className='btn-blank' type="button" onClick={onClose}>
+            <button className="btn-blank" type="button" onClick={onClose}>
               Cancelar
             </button>
 

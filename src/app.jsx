@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './components/structure/Navbar';
+import Footer from './components/structure/Footer';
 import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
-import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import AdminPage from './pages/AdminPage';
-import productData from './data/products.json';
 
 function App() {
   const [activeView, setActiveView] = useState('start');
@@ -25,9 +24,7 @@ function App() {
       {activeView === 'product' && (
         <ProductPage setActiveView={setActiveView} product={selectedProduct} />
       )}
-      {activeView === 'admin' && (
-        <AdminPage setActiveView={setActiveView} />
-      )}
+      {activeView === 'admin' && <AdminPage setActiveView={setActiveView} />}
       <Footer />
     </>
   );
