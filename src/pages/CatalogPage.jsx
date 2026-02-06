@@ -9,11 +9,13 @@ function CatalogPage({ setActiveView, setSelectedProduct }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setProducts(productsData);
-      setLoading(false);
-    }, 1000);
-  }, []);
+  async function loadProducts() {
+    setLoading(true);
+    setProducts(productsData);
+    setLoading(false);
+  }
+  loadProducts();
+}, []);
 
   if (loading) {
     return (
