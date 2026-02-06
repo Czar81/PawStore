@@ -78,9 +78,7 @@ footer {
 }
 
 /*Btns*/
-.btn-lilac {
-  background-color: var(--clr-primary);
-  color: var(--clr-text-light);
+.btn-lilac, .btn-blank {
   font-weight: 600;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -89,6 +87,16 @@ footer {
     background-color 0.25s ease,
     color 0.25s ease,
     transform 0.2s ease;
+}
+
+.btn-lilac{
+  background-color: var(--clr-primary);
+  color: var(--clr-text-light);
+}
+.btn-blank{
+  background-color: transparent;
+  color: var(--clr-text);
+  border: 1px solid var(--clr-shadow);
 }
 
 .btn-lilac:hover {
@@ -293,6 +301,34 @@ label {
 .alert-message {
   color: var(--clr-danger);
 }
+
 .input-error {
   border-color: var(--clr-danger);
+}
+.btn-container{
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+/*Overlay*/
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.overlay-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
 }
