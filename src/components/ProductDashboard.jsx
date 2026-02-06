@@ -1,22 +1,5 @@
 function ProductDashboard() {
-  const products = [{
-    "id": 1,
-    "nombre": "Collar de cuero",
-    "descripcion": "Collar resistente para perros de todos los tamaños.",
-    "precio": 8500,
-    "categoria": "Perros",
-    "imagen": "https://placehold.co/300x200.png?text=Collar+de+cuero",
-    "stock": 12
-  },
-  {
-    "id": 2,
-    "nombre": "Cama suave para gatos",
-    "descripcion": "Cama acolchada y cómoda para gatos de interior.",
-    "precio": 12000,
-    "categoria": "Gatos",
-    "imagen": "https://placehold.co/300x200.png?text=Cama+para+gatos",
-    "stock": 5
-  },];
+  const products = [];
   return (
     <table className="dashboard">
       <thead>
