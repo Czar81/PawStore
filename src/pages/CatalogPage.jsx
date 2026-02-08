@@ -3,11 +3,16 @@ import Spinner from '../components/generic/spinner';
 import ProductCard from '../components/product/ProductCard';
 import productsData from '../data/products.json';
 import NotFound from '../components/generic/NotFound';
+import { useProductStore } from '../store/productStore';
 
-function CatalogPage({ setActiveView, setSelectedProduct }) {
-  const [products, setProducts] = useState([]);
+function CatalogPage({ setActiveView }) {
   const [loading, setLoading] = useState(true);
 
+  const setSelectedProductId = useProductStore(
+    (state) => state.setSelectedProductId
+  );
+  const products = useProductStore((state) => state.products);
+  const setProducts = useProductStore((state) => state.setProducts);
   useEffect(() => {
     async function loadProducts() {
       setLoading(true);
@@ -44,7 +49,7 @@ function CatalogPage({ setActiveView, setSelectedProduct }) {
             key={product.id}
             onClick={() => {
               setActiveView('product');
-              setSelectedProduct(product);
+              setSelectedProductId(product.id);
             }}
           />
         ))}

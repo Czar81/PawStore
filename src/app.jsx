@@ -8,7 +8,6 @@ import AdminPage from './pages/AdminPage';
 
 function App() {
   const [activeView, setActiveView] = useState('start');
-  const [selectedProduct, setSelectedProduct] = useState(null);
   return (
     <>
       <Navbar activeView={activeView} setActiveView={setActiveView} />
@@ -16,13 +15,10 @@ function App() {
       {activeView === 'start' && <HomePage setActiveView={setActiveView} />}
 
       {activeView === 'products' && (
-        <CatalogPage
-          setActiveView={setActiveView}
-          setSelectedProduct={setSelectedProduct}
-        />
+        <CatalogPage setActiveView={setActiveView} />
       )}
       {activeView === 'product' && (
-        <ProductPage setActiveView={setActiveView} product={selectedProduct} />
+        <ProductPage setActiveView={setActiveView} />
       )}
       {activeView === 'admin' && <AdminPage setActiveView={setActiveView} />}
       <Footer />
