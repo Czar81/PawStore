@@ -30,7 +30,7 @@ function ProductDashboard() {
                 <td className="dashboard-cell">{product.id}</td>
                 <td className="dashboard-cell">{product.nombre}</td>
                 <td className="dashboard-cell">₡{product.precio}</td>
-                <td className="dashboard-cell">{product.categoria}</td>
+                <td className="dashboard-cell"><span className="dashboard-category">{product.categoria}</span></td>
                 <td className="dashboard-cell">{product.stock}</td>
                 <td className="dashboard-cell dashboard-actions">
                   <button

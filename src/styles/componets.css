@@ -51,7 +51,7 @@ footer {
 }
 
 /*Main*/
-.main-text > h2 {
+.main-text>h2 {
   font-size: 3rem;
   font-weight: 800;
 }
@@ -94,6 +94,7 @@ footer {
   background-color: var(--clr-primary);
   color: var(--clr-text-light);
 }
+
 .btn-blank {
   background-color: transparent;
   color: var(--clr-text);
@@ -249,20 +250,20 @@ footer {
 }
 
 /*Admin page*/
-.admin-card > h2 {
+.admin-card>h2 {
   color: var(--clr-text-dark);
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
-.admin-card > p {
+.admin-card>p {
   color: var(--clr-text);
   font-size: 1rem;
   margin-bottom: 1.5rem;
 }
 
-.dashboard-header > th {
+.dashboard-header>th {
   text-align: left;
   color: var(--clr-text);
 }
@@ -273,8 +274,20 @@ footer {
   border-radius: 8px;
 }
 
+/*Dashboard*/
+
+.dashboard-cell {
+  font-weight: 600;
+}
+
 .dashboard-actions {
   text-align: right !important;
+}
+
+.dashboard-category {
+  background-color: var(--clr-shadow-light);
+  padding: 0.25rem 1rem;
+  border-radius: 15px;
 }
 
 .no-data {
@@ -306,11 +319,13 @@ label {
 .input-error {
   border-color: var(--clr-danger);
 }
+
 .btn-container {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
 }
+
 /*Overlay*/
 .overlay {
   position: fixed;
