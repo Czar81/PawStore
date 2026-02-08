@@ -16,7 +16,16 @@ export const useProductStore = create((set, get) => ({
 
   addProduct: (product) =>
     set((state) => ({
-      products: [...state.products, product],
+      products: [
+        ...state.products,
+        {
+          ...product,
+          id:
+            state.products.length > 0
+              ? Math.max(...state.products.map((p) => p.id)) + 1
+              : 1,
+        },
+      ],
     })),
 
   getProductById: (id) => get().products.find((product) => product.id === id),
