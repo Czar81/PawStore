@@ -5,12 +5,16 @@ function FormAddPorduct() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const addProduct = useProductStore((state) => state.addProduct);
-
+  const onSubmit = (data) => {
+    addProduct(data);
+    reset();
+  };
   return (
-    <form className="form-products" onSubmit={handleSubmit(addProduct)}>
+    <form className="form-products" onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="product-name">Nombre</label>
       {errors.nombre && (
         <span role="alert" className="alert-message">
