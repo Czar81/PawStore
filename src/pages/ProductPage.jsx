@@ -1,4 +1,22 @@
-function ProductPage({ setActiveView, product }) {
+import { useProductStore } from '../store/productStore';
+
+function ProductPage({ setActiveView }) {
+  const product = useProductStore((state) => state.getSelectedProduct());
+  if (!product) {
+    return (
+      <main className="main-text">
+        <h2>Producto no encontrado</h2>
+        <p>El producto que buscas no existe o ha sido eliminado.</p>
+        <button
+          className="btn-lilac"
+          type="button"
+          onClick={() => setActiveView('products')}
+        >
+          Volver al catalogo
+        </button>
+      </main>
+    );
+  }
   return (
     <main className="product-details">
       <div className="img-product-container">
