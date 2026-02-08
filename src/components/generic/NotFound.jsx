@@ -1,4 +1,4 @@
-import icon from '../assets/icons/emoji-sad.svg';
+import icon from '../../assets/icons/emoji-sad.svg';
 
 function NotFound({ title, desc }) {
   return (
