@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
+import { useProductStore } from '../../store/productStore';
 
-function EditProductPage({ product, onClose }) {
+function EditProductPage({ product }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -23,7 +24,17 @@ function EditProductPage({ product, onClose }) {
       stock: product.stock,
     },
   });
-  const onSubmit = (data) => console.log(data);
+  const updateProduct = useProductStore((state) => state.updateProduct);
+
+  const clearSelectedProductId = useProductStore(
+    (state) => state.clearSelectedProductId
+  );
+  const onSubmit = (data) => {
+    updateProduct(product.id, data);
+    clearSelectedProductId();
+  }
+  const onClose = useProductStore((state) => state.clearSelectedProductId);
+
   return (
     <div className="overlay">
       <div className="overlay-card">

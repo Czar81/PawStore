@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useProductStore } from '../../store/productStore';
 
 function FormAddPorduct() {
   const {
@@ -6,9 +7,10 @@ function FormAddPorduct() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const addProduct = useProductStore((state) => state.addProduct);
+
   return (
-    <form className="form-products" onSubmit={handleSubmit(onSubmit)}>
+    <form className="form-products" onSubmit={handleSubmit(addProduct)}>
       <label htmlFor="product-name">Nombre</label>
       {errors.nombre && (
         <span role="alert" className="alert-message">
