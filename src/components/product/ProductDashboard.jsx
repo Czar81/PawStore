@@ -1,6 +1,9 @@
-function ProductDashboard({ setEditingProduct }) {
-  const products = [];
+import { useProductStore } from '../../store/productStore';
 
+function ProductDashboard() {
+  const products = useProductStore((state) => state.products);
+  const setSelectedId = useProductStore((state) => state.setSelectedProductId);
+  const deleteProduct = useProductStore((state) => state.deleteProduct);
   return (
     <table className="dashboard">
       <thead>
@@ -33,11 +36,15 @@ function ProductDashboard({ setEditingProduct }) {
                   <button
                     className="btn-lilac"
                     type="button"
-                    onClick={() => setEditingProduct(product)}
+                    onClick={() => setSelectedId(product.id)}
                   >
                     Editar
                   </button>
-                  <button className="btn-lilac" type="button">
+                  <button
+                    className="btn-lilac"
+                    type="button"
+                    onClick={() => deleteProduct(product.id)}
+                  >
                     Eliminar
                   </button>
                 </td>
