@@ -1,10 +1,13 @@
 import ProductDashboard from '../components/product/ProductDashboard';
 import FormAddPorduct from '../components/forms/FormAddProduct';
 import FormEditProduct from '../components/forms/FormEditProduct';
-import { useState } from 'react';
+import { useProductStore } from '../store/productStore';
 
-function AdminPage({ setActiveView }) {
-  const [editingProduct, setEditingProduct] = useState(null);
+function AdminPage() {
+  const selectedProduct = useProductStore((state) =>
+    state.getSelectedProduct()
+  );
+
   return (
     <main className="admin-page">
       <section className="admin-card">
@@ -12,18 +15,13 @@ function AdminPage({ setActiveView }) {
         <p>
           En esta sección puedes gestionar el catalogo de productos de PawStore
         </p>
-        <ProductDashboard setEditingProduct={setEditingProduct} />
+        <ProductDashboard />
       </section>
       <section className="admin-card">
         <h2>Agregar un nuevo producto</h2>
         <FormAddPorduct />
       </section>
-      {editingProduct && (
-        <FormEditProduct
-          product={editingProduct}
-          onClose={() => setEditingProduct(null)}
-        />
-      )}
+      {selectedProduct && <FormEditProduct product={selectedProduct} />}
     </main>
   );
 }
