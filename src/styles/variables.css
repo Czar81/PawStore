@@ -6,5 +6,7 @@
   --clr-text: #5d5d5d;
   --clr-text-light: #f2f2f2;
   --clr-shadow: #2c2c2c34;
+  --clr-shadow-light: #dfdfdf;
   --bg-surface: #dbdbdb;
+  --clr-danger: #e41801;
 }

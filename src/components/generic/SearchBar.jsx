@@ -1,4 +1,4 @@
-import icon from '../assets/icons/hand-lens.svg';
+import icon from '../../assets/icons/hand-lens.svg';
 function SearchBar() {
   return (
     <div className="search-bar">

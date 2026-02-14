@@ -12,23 +12,26 @@ Online pet products store. Web application built with React and Vite that allows
 
 ## Prerequisites
 
-- Node.js 16+ 
+- Node.js 16+
 - npm or yarn
 
 ## Installation
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/Czar81/PawStore.git
 cd paw-store
 ```
 
 2. **Install dependencies**
+
 ```bash
 npm install
 ```
 
 3. **Start development server**
+
 ```bash
 npm run dev
 ```
