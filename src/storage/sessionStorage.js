@@ -1,7 +1,7 @@
 import { setCookie, getCookie, deleteCookie } from '/src/utils/cookie.js';
 
-const UID_KEY = 'uid';
+const TOKEN = 'token';
 
-export const setUserId = (id) => setCookie(UID_KEY, id, 'max-age=31536000');
-export const getUserId = () => getCookie(UID_KEY);
-export const clearUserId = () => deleteCookie(UID_KEY);
+export const setUserToken = (token) => setCookie(TOKEN, token, 'max-age=31536000');
+export const getUserToken = () => getCookie(TOKEN);
+export const clearUserToken = () => deleteCookie(TOKEN);
