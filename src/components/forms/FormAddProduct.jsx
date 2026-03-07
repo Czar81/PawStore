@@ -1,5 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { useProductStore } from '../../store/productStore';
+import { useState } from 'react';
+import { useProductStore } from '@/store/productStore';
+import { createProduct as createProductAPI } from '@/services/apiProduct';
 
 function FormAddPorduct() {
   const {
@@ -9,12 +11,37 @@ function FormAddPorduct() {
     formState: { errors },
   } = useForm();
   const addProduct = useProductStore((state) => state.addProduct);
-  const onSubmit = (data) => {
-    addProduct(data);
-    reset();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const onSubmit = async (data) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const productData = {
+        sku: data.sku,
+        name: data.nombre,
+        price: parseFloat(data.precio),
+        amount: parseInt(data.stock),
+      };
+      
+      const result = await createProductAPI(productData);
+      if (result?.id) {
+        addProduct({ ...productData, id: result.id, id_product: result.id });
+        reset();
+      } else {
+        setError('Error al crear el producto');
+      }
+    } catch (err) {
+      setError('Error al crear el producto');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <form className="form-products" onSubmit={handleSubmit(onSubmit)}>
+      {error && <div className="alert-error">{error}</div>}
       <label htmlFor="product-name">Nombre</label>
       {errors.nombre && (
         <span role="alert" className="alert-message">
@@ -138,8 +165,8 @@ function FormAddPorduct() {
           required: 'Campo obligatorio',
         })}
       />
-      <button type="submit" className="btn-lilac">
-        Agregar producto
+      <button type="submit" className="btn-lilac" disabled={loading}>
+        {loading ? 'Agregando...' : 'Agregar producto'}
       </button>
     </form>
   );
