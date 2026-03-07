@@ -1,7 +1,8 @@
-import { useProductStore } from '../store/productStore';
+import { useProductStore } from '@/store/productStore';
 
 function ProductPage({ setActiveView }) {
   const product = useProductStore((state) => state.getSelectedProduct());
+  
   if (!product) {
     return (
       <main className="main-text">
@@ -20,13 +21,13 @@ function ProductPage({ setActiveView }) {
   return (
     <main className="product-details">
       <div className="img-product-container">
-        <img className="img-product" src={product.imagen} alt="Product image" />
+        <img className="img-product" src={product.imagen || 'https://via.placeholder.com/400'} alt="Product image" />
       </div>
       <div className="product-desc">
-        <h2 className="title">{product.nombre}</h2>
-        <p className="price">₡{product.precio}</p>
-        <p className="category">{product.categoria}</p>
-        <p className="description">{product.descripcion}</p>
+        <h2 className="title">{product.name || 'Sin nombre'}</h2>
+        <p className="price">₡{product.price  || 0}</p>
+        <p className="category">{product.categoria || 'Sin categoría'}</p>
+        <p className="description">{product.descripcion || 'Sin descripción'}</p>
         <small>
           Más adelante aquí se podrá agregar este producto al carrito y
           completar la compra.
