@@ -1,11 +1,19 @@
-let userState = {};
+import { create } from 'zustand';
 
-export const setUserState = (user) => {
-  userState = user;
-};
+export const useUserStore = create((set, get) => ({
+  user: null,
+  isAuthenticated: false,
+  isLoading: false,
 
-export const removeTaskFromState = () => {
-  userState = {};
-};
+  setUser: (user) => set({ user, isAuthenticated: !!user }),
 
-export const getUserFromState = () => userState;
+  logout: () => set({ user: null, isAuthenticated: false }),
+
+  getUser: () => get().user,
+
+  isUserAdmin: () => get().user?.role === 'admin',
+
+  isUserClient: () => get().user?.role === 'user',
+
+  setLoading: (loading) => set({ isLoading: loading }),
+}));
