@@ -1,4 +1,4 @@
-import { setCookie, getCookie, deleteCookie } from '/src/utils/cookie.js';
+import { setCookie, getCookie, deleteCookie } from '@/utils/cookies.js';
 
 const TOKEN = 'token';
 
