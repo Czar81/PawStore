@@ -76,14 +76,14 @@ function ProductDashboard() {
                 <td className="dashboard-cell">{product.amount || product.stock}</td>
                 <td className="dashboard-cell dashboard-actions">
                   <button
-                    className="btn-lilac"
+                    className="btn btn-lilac"
                     type="button"
                     onClick={() => setSelectedId(product.id_product || product.id)}
                   >
                     Editar
                   </button>
                   <button
-                    className="btn-lilac"
+                    className="btn btn-lilac"
                     type="button"
                     onClick={() => handleDelete(product.id_product || product.id)}
                   >

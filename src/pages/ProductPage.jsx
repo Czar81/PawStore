@@ -33,7 +33,7 @@ function ProductPage({ setActiveView }) {
           completar la compra.
         </small>
         <button
-          className="btn-lilac"
+          className="btn btn-lilac"
           type="button"
           onClick={() => setActiveView('products')}
         >

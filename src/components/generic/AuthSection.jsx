@@ -31,7 +31,7 @@ function AuthSection({ setActiveView }) {
           </button>
         </>
       ) : (
-        <button className="btn-login-nav" onClick={handleLoginClick}>
+        <button className="btn btn-lilac" onClick={handleLoginClick}>
           Iniciar sesión
         </button>
       )}

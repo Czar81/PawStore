@@ -12,7 +12,7 @@ function ProductCard({ product, onClick }) {
         <h3>{productName}</h3>
         <p className="price">₡{productPrice}</p>
         <p className="category">{productCategory}</p>
-        <button className="btn-lilac" type="button" onClick={onClick}>
+        <button className="btn btn-lilac" type="button" onClick={onClick}>
           Ver detalles
         </button>
       </div>
