@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useUserStore } from '@/store/userStore';
-import { login as loginAPI } from '@/services/user/authService';
+import { signUp as signupAPI } from '@/services/user/authService';
 import { getProfile } from '@/services/user/apiUser';
 import FormSignup from '@/components/forms/FormSignup';
 
@@ -13,12 +13,12 @@ function SignupPage({ setActiveView }) {
     setLoading(true);
     setError(null);
     try {
-      const loginResult = await loginAPI({
-        username: data.username,
+      const signupResult  = await signupAPI({
+        username: data.name,
         password: data.password,
       });
 
-      if (!loginResult) {
+      if (!signupResult ) {
         setError('Credenciales inválidas. Intenta de nuevo.');
         return;
       }
@@ -30,7 +30,7 @@ function SignupPage({ setActiveView }) {
           id: userProfile.id,
           username: data.username,
           role: userProfile.role || 'user',
-          token: loginResult.token,
+          token: signupResult.token,
         });
         setActiveView(userProfile.role === 'admin' ? 'admin' : 'products');
       } else {
