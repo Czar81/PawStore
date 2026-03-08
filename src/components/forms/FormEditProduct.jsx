@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
-import { useProductStore } from '../../store/productStore';
+import { useEffect, useState } from 'react';
+import { useProductStore } from '@/store/productStore';
+import { updateProduct as updateProductAPI } from '@/services/apiProduct';
 
 function EditProductPage({ product }) {
   useEffect(() => {
@@ -10,30 +11,56 @@ function EditProductPage({ product }) {
       document.body.style.overflow = 'auto';
     };
   }, []);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      nombre: product.nombre,
+      nombre: product.name || product.nombre,
       descripcion: product.descripcion,
-      precio: product.precio,
+      precio: product.price || product.precio,
       categoria: product.categoria,
       imagen: product.imagen,
-      stock: product.stock,
+      stock: product.amount || product.stock,
     },
   });
-  const updateProduct = useProductStore((state) => state.updateProduct);
+  const updateProductStore = useProductStore((state) => state.updateProduct);
 
   const clearSelectedProductId = useProductStore(
     (state) => state.clearSelectedProductId
   );
-  const onSubmit = (data) => {
-    updateProduct(product.id, data);
-    clearSelectedProductId();
-  }
-  const onClose = useProductStore((state) => state.clearSelectedProductId);
+
+  const onSubmit = async (data) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const productId = product.id_product || product.id;
+      const productData = {
+        sku: data.nombre,
+        name: data.nombre,
+        price: parseFloat(data.precio),
+        amount: parseInt(data.stock),
+      };
+
+      const result = await updateProductAPI(productId, productData);
+      if (result) {
+        updateProductStore(productId, productData);
+        clearSelectedProductId();
+      } else {
+        setError('Error al actualizar el producto');
+      }
+    } catch (err) {
+      setError('Error al actualizar el producto');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="overlay">
@@ -41,6 +68,7 @@ function EditProductPage({ product }) {
         <h2>Editar producto</h2>
 
         <form className="form-products" onSubmit={handleSubmit(onSubmit)}>
+          {error && <div className="alert-error">{error}</div>}
           <label htmlFor="nombre">Nombre:</label>
           <input
             type="text"
@@ -90,12 +118,17 @@ function EditProductPage({ product }) {
           />
 
           <div className="btn-container">
-            <button className="btn-blank" type="button" onClick={onClose}>
+            <button
+              className="btn-blank"
+              type="button"
+              onClick={clearSelectedProductId}
+              disabled={loading}
+            >
               Cancelar
             </button>
 
-            <button className="btn-lilac" type="submit">
-              Guardar cambios
+            <button className="btn-lilac" type="submit" disabled={loading}>
+              {loading ? 'Guardando...' : 'Guardar cambios'}
             </button>
           </div>
         </form>
