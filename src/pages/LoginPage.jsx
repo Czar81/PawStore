@@ -45,14 +45,14 @@ function LoginPage({ setActiveView }) {
   };
 
   return (
-    <main className="admin-page login-page">
-      <section className="admin-card section-form">
+    <main className="page-generic">
+      <section className="section-form">
         <h2>Iniciar Sesión</h2>
         <p className="login-subtitle">Accede a tu cuenta de PawStore</p>
 
         <FormLogin onSubmit={onSubmit} loading={loading} error={error} />
 
-        <div className="login-footer">
+        <div className="form-footer">
           <p>¿No tienes cuenta?</p>
           <a className='link' onClick={() => setActiveView("signup")}>Crea una aqui</a>
         </div>

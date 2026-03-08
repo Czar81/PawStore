@@ -8,7 +8,7 @@ function FormLogin({ onSubmit, loading, error }) {
   } = useForm();
 
   return (
-    <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
+    <form className="form-generic" onSubmit={handleSubmit(onSubmit)}>
       {error && <div className="alert-error">{error}</div>}
 
       <label htmlFor="email">Correo Electrónico</label>
