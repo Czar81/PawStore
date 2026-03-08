@@ -4,6 +4,7 @@ import Footer from './components/structure/Footer';
 import ProtectedRoute from './components/structure/ProtectedRoute';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 import CatalogPage from './pages/CatalogPage';
 import ProductPage from './pages/ProductPage';
 import AdminPage from './pages/AdminPage';
@@ -65,6 +66,10 @@ function App() {
 
       {activeView === 'login' && (
         <LoginPage setActiveView={setActiveView} />
+      )}
+
+      {activeView === 'signup' && (
+        <SignupPage setActiveView={setActiveView} />
       )}
 
       {activeView === 'products' && (
