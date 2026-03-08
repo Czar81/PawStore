@@ -141,6 +141,7 @@ footer {
 /*form*/
 
 .form-products,
+.form-login,
 .two-on-row > div {
   display: flex;
   flex-direction: column;
@@ -160,6 +161,10 @@ footer {
 .form-input {
   width: 100%;
   padding: 0.5rem 1rem;
+}
+
+.section-form{
+  width: 100%;
 }
 
 /*Erro*/

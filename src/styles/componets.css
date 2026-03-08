@@ -325,6 +325,46 @@ label {
   gap: 1rem;
 }
 
+.login-page {
+  justify-items: center;
+  align-content: center;
+}
+
+.login-page .section-form {
+  max-width: 420px;
+}
+
+.login-page h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.login-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.login-page .form-input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+.login-page .btn-lilac {
+  padding: 0.75rem;
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+}
+
+.login-page label {
+  font-size: 0.95rem;
+}
+
+.login-footer {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
 /*Overlay*/
 .overlay {
   position: fixed;
@@ -346,4 +386,15 @@ label {
   border-radius: 12px;
   width: 100%;
   max-width: 500px;
+}
+
+.link{
+  cursor: pointer;
+  color: var(--clr-primary);
+}
+.link:hover{
+  color: var(--clr-secondary);
+}
+.link:active{
+  color: var(--clr-primary);
 }
