@@ -108,6 +108,23 @@ footer {
   background-color: var(--clr-primary);
 }
 
+.btn-logout {
+  background-color: transparent;
+  color: var(--clr-danger);
+  border: 1px solid var(--clr-danger);
+}
+
+.btn-logout:hover {
+  background-color: var(--clr-danger);
+  color: var(--clr-text-light);
+}
+
+.btn-logout:active {
+  background-color: transparent;
+  color: var(--clr-danger);
+  border: 1px solid var(--clr-danger);
+}
+
 /*Spinner*/
 .spinner {
   border: 4px solid var(--bg-surface);

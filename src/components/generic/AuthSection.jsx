@@ -2,7 +2,7 @@ import { useUserStore } from '@/store/userStore';
 import { logout as logoutAPI } from '@/services/user/authService';
 
 function AuthSection({ setActiveView }) {
-  const user = useUserStore((state) => state.getUser());
+  const user = useUserStore((state) => state.user);
   const isAuthenticated = useUserStore((state) => state.isAuthenticated);
   const logout = useUserStore((state) => state.logout);
 
@@ -26,7 +26,7 @@ function AuthSection({ setActiveView }) {
               <span className="nav-role admin">admin</span>
             )}
           </span>
-          <button className="btn btn-blank" onClick={handleLogout}>
+          <button className="btn btn-logout" onClick={handleLogout}>
             Cerrar sesión
           </button>
         </>

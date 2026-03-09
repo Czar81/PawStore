@@ -32,6 +32,12 @@ nav {
   padding: 0;
 }
 
+.nav-auth {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 /*Main*/
 .main-text {
   display: flex;
