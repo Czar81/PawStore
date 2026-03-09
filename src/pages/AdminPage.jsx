@@ -9,7 +9,7 @@ function AdminPage() {
   );
 
   return (
-    <main className="page-generic">
+    <main className="admin-page">
       <section className="admin-card">
         <h2>Administración de productos</h2>
         <p>

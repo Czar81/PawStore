@@ -165,7 +165,7 @@ function FormAddPorduct() {
           required: 'Campo obligatorio',
         })}
       />
-      <button type="submit" className="btn-lilac" disabled={loading}>
+      <button type="submit" className="btn btn-lilac" disabled={loading}>
         {loading ? 'Agregando...' : 'Agregar producto'}
       </button>
     </form>

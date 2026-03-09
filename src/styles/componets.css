@@ -100,6 +100,17 @@ footer {
   border: 1px solid var(--clr-shadow);
 }
 
+.btn-blank:hover {
+  background-color: var(--clr-shadow);
+  color: var(--clr-text-dark);
+}
+
+.btn-blank:active {
+  background-color: transparent;
+  color: var(--clr-text);
+  border: 1px solid var(--clr-shadow);
+}
+
 .btn-lilac:hover {
   background-color: var(--clr-secondary);
 }
@@ -299,6 +310,12 @@ footer {
   gap: 2rem;
 }
 
+.admin-page {
+  display: grid;
+  gap: 2rem;
+  margin: 2rem;
+}
+
 /*Dashboard*/
 
 .dashboard-cell {
@@ -418,4 +435,8 @@ label {
 }
 .link:active{
   color: var(--clr-primary);
+}
+
+.btn-container .btn-lilac {
+  margin-top: 0;
 }

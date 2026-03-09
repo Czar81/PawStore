@@ -119,7 +119,7 @@ function EditProductPage({ product }) {
 
           <div className="btn-container">
             <button
-              className="btn-blank"
+              className="btn btn-blank"
               type="button"
               onClick={clearSelectedProductId}
               disabled={loading}
@@ -127,7 +127,7 @@ function EditProductPage({ product }) {
               Cancelar
             </button>
 
-            <button className="btn-lilac" type="submit" disabled={loading}>
+            <button className="btn btn-lilac" type="submit" disabled={loading}>
               {loading ? 'Guardando...' : 'Guardar cambios'}
             </button>
           </div>
