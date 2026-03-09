@@ -6,7 +6,7 @@ function ProtectedRoute({
   requiredRoles = [], 
   onUnauthorized = null 
 }) {
-  const user = useUserStore((state) => state.getUser());
+  const user = useUserStore((state) => state.user);
   const isAuthenticated = useUserStore((state) => state.isAuthenticated);
 
   if (!isAuthenticated || !user) {

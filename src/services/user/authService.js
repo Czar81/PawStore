@@ -22,7 +22,8 @@ export const signUp = async (data) => {
 export const login = async (data) => {
   try {
     const response = await apiClient.post('/login', data);
-    if (response?.data?.id) {
+    console.log('Response completo:', response?.data);
+    if (response?.data?.token) {
       setUserToken(response.data.token);
       return response.data;
     }

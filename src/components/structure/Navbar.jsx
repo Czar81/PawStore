@@ -4,7 +4,7 @@ import AuthSection from '@/components/generic/AuthSection';
 import { useUserStore } from '@/store/userStore';
 
 function Navbar({ activeView, setActiveView }) {
-  const user = useUserStore((state) => state.getUser());
+  const user = useUserStore((state) => state.user);
   const isAuthenticated = useUserStore((state) => state.isAuthenticated);
 
   const navItems = [

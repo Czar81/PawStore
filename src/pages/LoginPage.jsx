@@ -14,11 +14,12 @@ function LoginPage({ setActiveView }) {
     setError(null);
     try {
       const loginResult = await loginAPI({
-        username: data.username,
+        email: data.email,
         password: data.password,
       });
 
       if (!loginResult) {
+        console.log(loginResult)
         setError('Credenciales inválidas. Intenta de nuevo.');
         return;
       }
@@ -28,7 +29,7 @@ function LoginPage({ setActiveView }) {
       if (userProfile) {
         setUser({
           id: userProfile.id,
-          username: data.username,
+          email: data.email,
           role: userProfile.role || 'user',
           token: loginResult.token,
         });

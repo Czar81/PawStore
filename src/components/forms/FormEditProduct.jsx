@@ -41,7 +41,7 @@ function EditProductPage({ product }) {
     try {
       const productId = product.id_product || product.id;
       const productData = {
-        sku: data.nombre,
+        sku: data.sku,
         name: data.nombre,
         price: parseFloat(data.precio),
         amount: parseInt(data.stock),

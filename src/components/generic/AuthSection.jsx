@@ -21,12 +21,12 @@ function AuthSection({ setActiveView }) {
       {isAuthenticated && user ? (
         <>
           <span className="nav-user">
-            Sesión: <strong>{user.username}</strong>
+            Sesión: <strong>{user.email}</strong>
             {user.role === 'admin' && (
               <span className="nav-role admin">admin</span>
             )}
           </span>
-          <button className="btn-logout" onClick={handleLogout}>
+          <button className="btn btn-blank" onClick={handleLogout}>
             Cerrar sesión
           </button>
         </>

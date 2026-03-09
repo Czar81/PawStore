@@ -14,7 +14,8 @@ function SignupPage({ setActiveView }) {
     setError(null);
     try {
       const signupResult  = await signupAPI({
-        username: data.name,
+        name: data.name,
+        email: data.email,
         password: data.password,
       });
 
@@ -28,7 +29,8 @@ function SignupPage({ setActiveView }) {
       if (userProfile) {
         setUser({
           id: userProfile.id,
-          username: data.username,
+          name: data.name,
+          email: data.email,
           role: userProfile.role || 'user',
           token: signupResult.token,
         });

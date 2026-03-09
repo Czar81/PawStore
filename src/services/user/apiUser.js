@@ -11,6 +11,7 @@ export const getProfile = async () => {
     const response = await apiClient.get('/me', {
       headers: getAuthHeaders(),
     });
+    console.log(response.data)
     return response?.data?.user || null;
   } catch (err) {
     console.error('Error fetching profile:', err);

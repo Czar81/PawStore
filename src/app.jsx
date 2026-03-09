@@ -11,6 +11,7 @@ import AdminPage from './pages/AdminPage';
 import { useProductStore } from './store/productStore';
 import { useUserStore } from './store/userStore';
 import { getProducts } from '@/services/apiProduct';
+import { checkSession } from '@/services/user/authService';
 import Spinner from './components/generic/spinner';
 
 function App() {
@@ -18,8 +19,21 @@ function App() {
   const setProducts = useProductStore((state) => state.setProducts);
   const [loading, setLoading] = useState(true);
   const isAuthenticated = useUserStore((state) => state.isAuthenticated);
-  const user = useUserStore((state) => state.getUser());
+  const user = useUserStore((state) => state.user);
+  const logout = useUserStore((state) => state.logout);
 
+
+  useEffect(() => {
+    async function verifySession() {
+      const isValid = await checkSession();
+      if (!isValid) {
+        logout();
+        setActiveView('start');
+      }
+    }
+
+    verifySession();
+  }, []);
   useEffect(() => {
     async function loadProducts() {
       setLoading(true);
@@ -46,31 +60,28 @@ function App() {
     }
   }, [activeView, isAuthenticated, user]);
 
-  if (loading && activeView !== 'login') {
-    return (
-      <>
-        <Navbar activeView={activeView} setActiveView={setActiveView} />
-        <main className="main-text">
-          <Spinner />
-        </main>
-        <Footer />
-      </>
-    );
+  if (loading && activeView !== 'login' && activeView !== 'signup') {
+    {
+      return (
+        <>
+          <Navbar activeView={activeView} setActiveView={setActiveView} />
+          <main className="main-text">
+            <Spinner />
+          </main>
+          <Footer />
+        </>
+      );
+    }
   }
-
   return (
     <>
       <Navbar activeView={activeView} setActiveView={setActiveView} />
 
       {activeView === 'start' && <HomePage setActiveView={setActiveView} />}
 
-      {activeView === 'login' && (
-        <LoginPage setActiveView={setActiveView} />
-      )}
+      {activeView === 'login' && <LoginPage setActiveView={setActiveView} />}
 
-      {activeView === 'signup' && (
-        <SignupPage setActiveView={setActiveView} />
-      )}
+      {activeView === 'signup' && <SignupPage setActiveView={setActiveView} />}
 
       {activeView === 'products' && (
         <CatalogPage setActiveView={setActiveView} />

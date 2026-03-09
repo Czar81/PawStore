@@ -8,19 +8,9 @@ function CatalogPage({ setActiveView }) {
   );
   const products = useProductStore((state) => state.products);
 
-  const normalizedProducts = products.map((product) => ({
-    ...product,
-    id: product.id_product,
-    nombre: product.name ,
-    precio: product.price,
-    imagen:
-      product.image ||
-      'https://via.placeholder.com/300x200?text=No+Image',
-    categoria: product.categoria || 'Sin categoría',
-    stock: product.amount|| 0,
-  }));
 
-  if (normalizedProducts.length === 0) {
+
+  if (products.length === 0) {
     return (
       <main className="main-text">
         <NotFound
@@ -35,7 +25,7 @@ function CatalogPage({ setActiveView }) {
     <main className="catalog">
       <h2>Catalogo de Productos</h2>
       <div className="products-container">
-        {normalizedProducts.map((product) => (
+        {products.map((product) => (
           <ProductCard
             product={product}
             key={product.id}
