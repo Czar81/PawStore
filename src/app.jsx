@@ -12,6 +12,7 @@ import { useProductStore } from './store/productStore';
 import { useUserStore } from './store/userStore';
 import { getProducts } from '@/services/apiProduct';
 import { checkSession } from '@/services/user/authService';
+import { getProfile } from '@/services/user/apiUser';
 import Spinner from './components/generic/spinner';
 
 function App() {
@@ -21,36 +22,44 @@ function App() {
   const isAuthenticated = useUserStore((state) => state.isAuthenticated);
   const user = useUserStore((state) => state.user);
   const logout = useUserStore((state) => state.logout);
-
+  const setUser = useUserStore((state) => state.setUser);
 
   useEffect(() => {
-    async function verifySession() {
-      const isValid = await checkSession();
-      if (!isValid) {
-        logout();
-        setActiveView('start');
-      }
-    }
-
-    verifySession();
-  }, []);
-  useEffect(() => {
-    async function loadProducts() {
+    async function initialize() {
       setLoading(true);
       try {
+        const isValid = await checkSession();
+        if (isValid) {
+          const profile = await getProfile();
+          console.log('userProfile raw:', profile);
+
+          if (profile) {
+            setUser({
+              id: profile.id,
+              email: profile.email,
+              role: profile.role || 'user',
+            });
+            if (profile.role === 'admin') {
+              setActiveView('admin');
+            }
+          }
+        } else {
+          logout();
+        }
+
         const products = await getProducts();
         if (Array.isArray(products)) {
           setProducts(products);
         }
       } catch (err) {
-        console.error('Error loading products:', err);
+        console.error('Error al inicializar la app:', err);
       } finally {
         setLoading(false);
       }
     }
 
-    loadProducts();
-  }, [setProducts]);
+    initialize();
+  }, []);
 
   useEffect(() => {
     if (activeView === 'admin') {
