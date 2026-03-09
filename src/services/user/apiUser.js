@@ -11,8 +11,7 @@ export const getProfile = async () => {
     const response = await apiClient.get('/me', {
       headers: getAuthHeaders(),
     });
-    console.log(response.data)
-    return response?.data?.user || null;
+    return response?.data?.user?.[0] || null;
   } catch (err) {
     console.error('Error fetching profile:', err);
     return null;
@@ -24,7 +23,7 @@ export const getAllUsers = async () => {
     const response = await apiClient.get('/users', {
       headers: getAuthHeaders(),
     });
-    return response?.data?.user || [];
+    return response?.data || [];
   } catch (err) {
     console.error('Error fetching users:', err);
     return [];

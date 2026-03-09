@@ -69,16 +69,16 @@ function ProductDashboard() {
         ) : (
           products.map((product) => {
             return (
-              <tr key={product.id_product || product.id}>
-                <td className="dashboard-cell">{product.id_product || product.id}</td>
-                <td className="dashboard-cell">{product.name || product.nombre}</td>
-                <td className="dashboard-cell">₡{product.price || product.precio}</td>
-                <td className="dashboard-cell">{product.amount || product.stock}</td>
+              <tr key={product.id}>
+                <td className="dashboard-cell">{product.id}</td>
+                <td className="dashboard-cell">{product.name }</td>
+                <td className="dashboard-cell">₡{product.price}</td>
+                <td className="dashboard-cell">{product.stock}</td>
                 <td className="dashboard-cell dashboard-actions">
                   <button
                     className="btn btn-lilac"
                     type="button"
-                    onClick={() => setSelectedId(product.id_product || product.id)}
+                    onClick={() => setSelectedId(product.id)}
                   >
                     Editar
                   </button>

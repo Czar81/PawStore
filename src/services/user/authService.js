@@ -22,7 +22,6 @@ export const signUp = async (data) => {
 export const login = async (data) => {
   try {
     const response = await apiClient.post('/login', data);
-    console.log('Response completo:', response?.data);
     if (response?.data?.token) {
       setUserToken(response.data.token);
       return response.data;
@@ -37,6 +36,7 @@ export const login = async (data) => {
 export const checkSession = async () => {
   try {
     const token = getUserToken();
+    if (!token) return false;
     const response = await apiClient
       .get('/me', { headers: { Authorization: `Bearer ${token}` } });
     return response?.status === 200 ? true : false;
