@@ -31,8 +31,6 @@ function App() {
         const isValid = await checkSession();
         if (isValid) {
           const profile = await getProfile();
-          console.log('userProfile raw:', profile);
-
           if (profile) {
             setUser({
               id: profile.id,
