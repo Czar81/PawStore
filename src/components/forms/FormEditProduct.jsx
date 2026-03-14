@@ -21,12 +21,13 @@ function EditProductPage({ product }) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      nombre: product.name || product.nombre,
-      descripcion: product.descripcion,
-      precio: product.price || product.precio,
-      categoria: product.categoria,
-      imagen: product.imagen,
-      stock: product.amount || product.stock,
+      sku: product.sku || '',
+      name: product.name || '',
+      description: product.description || '',
+      price: product.price || '',
+      category: product.category || '',
+      image: product.image || '',
+      amount: product.amount || '',
     },
   });
   const updateProductStore = useProductStore((state) => state.updateProduct);
@@ -42,9 +43,12 @@ function EditProductPage({ product }) {
       const productId = product.id_product || product.id;
       const productData = {
         sku: data.sku,
-        name: data.nombre,
-        price: parseFloat(data.precio),
-        amount: parseInt(data.stock),
+        name: data.name,
+        description: data.description,
+        image: data.image,
+        category: data.category,
+        price: parseFloat(data.price),
+        amount: parseInt(data.amount),
       };
 
       const result = await updateProductAPI(productId, productData);
@@ -69,52 +73,60 @@ function EditProductPage({ product }) {
 
         <form className="form-products" onSubmit={handleSubmit(onSubmit)}>
           {error && <div className="alert-error">{error}</div>}
-          <label htmlFor="nombre">Nombre:</label>
+          <label htmlFor="sku">SKU:</label>
           <input
             type="text"
-            id="nombre"
-            className={`form-input ${errors.nombre ? 'input-error' : ''}`}
-            {...register('nombre', { required: true })}
+            id="sku"
+            className={`form-input ${errors.sku ? 'input-error' : ''}`}
+            {...register('sku', { required: true })}
           />
 
-          <label htmlFor="descripcion">Descripción:</label>
+          <label htmlFor="name">Nombre:</label>
+          <input
+            type="text"
+            id="name"
+            className={`form-input ${errors.name ? 'input-error' : ''}`}
+            {...register('name', { required: true })}
+          />
+
+          <label htmlFor="description">Descripción:</label>
           <textarea
             type="text"
-            id="descripcion"
-            className={`form-input form-textarea ${errors.descripcion ? 'input-error' : ''}`}
-            {...register('descripcion', { required: true })}
+            id="description"
+            className={`form-input form-textarea ${errors.description ? 'input-error' : ''}`}
+            {...register('description', { required: true })}
           />
 
-          <label htmlFor="precio">Precio:</label>
+          <label htmlFor="price">Precio:</label>
           <input
             type="number"
-            id="precio"
-            className={`form-input ${errors.precio ? 'input-error' : ''}`}
-            {...register('precio', { required: true })}
+            id="price"
+            className={`form-input ${errors.price ? 'input-error' : ''}`}
+            {...register('price', { required: true })}
           />
 
-          <label htmlFor="categoria">Categoría:</label>
+          <label htmlFor="category">Categoría:</label>
           <input
             type="text"
-            id="categoria"
-            className={`form-input ${errors.categoria ? 'input-error' : ''}`}
-            {...register('categoria', { required: true })}
+            id="category"
+            className={`form-input ${errors.category ? 'input-error' : ''}`}
+            {...register('category', { required: true })}
           />
 
-          <label htmlFor="imagen">Imagen URL:</label>
+          <label htmlFor="image">Imagen URL:</label>
           <input
             type="text"
-            id="imagen"
-            className={`form-input ${errors.imagen ? 'input-error' : ''}`}
-            {...register('imagen', { required: true })}
+            id="image"
+            className={`form-input ${errors.image ? 'input-error' : ''}`}
+            {...register('image', { required: true })}
           />
 
-          <label htmlFor="stock">Stock:</label>
+          <label htmlFor="amount">Stock:</label>
           <input
             type="number"
-            id="stock"
-            className={`form-input ${errors.stock ? 'input-error' : ''}`}
-            {...register('stock', { required: true })}
+            id="amount"
+            className={`form-input ${errors.amount ? 'input-error' : ''}`}
+            {...register('amount', { required: true })}
           />
 
           <div className="btn-container">
