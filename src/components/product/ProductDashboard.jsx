@@ -47,7 +47,6 @@ function ProductDashboard() {
   if (error) {
     return <div className="error">{error}</div>;
   }
-
   return (
     <table className="dashboard">
       <thead>
@@ -56,6 +55,7 @@ function ProductDashboard() {
           <th>NOMBRE</th>
           <th>PRECIO</th>
           <th>STOCK</th>
+          <th>Category</th>
           <th className="dashboard-actions">Actions</th>
         </tr>
       </thead>
@@ -73,7 +73,8 @@ function ProductDashboard() {
                 <td className="dashboard-cell">{product.id}</td>
                 <td className="dashboard-cell">{product.name }</td>
                 <td className="dashboard-cell">₡{product.price}</td>
-                <td className="dashboard-cell">{product.stock}</td>
+                <td className="dashboard-cell">{product.amount}</td>
+                <td className="dashboard-cell">{product.category}</td>
                 <td className="dashboard-cell dashboard-actions">
                   <button
                     className="btn btn-lilac"

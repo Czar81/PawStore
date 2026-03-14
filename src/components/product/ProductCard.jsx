@@ -3,7 +3,7 @@ function ProductCard({ product, onClick }) {
   const productPrice = product.price || 0;
   const productCategory = product.category || 'Sin categoría';
   const productImage =
-    product.image || 'https://via.placeholder.com/300x200?text=No+Image';
+    product.image || 'https://placehold.co/300x200?text=No+Image';
 
   return (
     <article className="product-card">
