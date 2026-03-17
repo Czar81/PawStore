@@ -78,8 +78,7 @@ footer {
 }
 
 /*Btns*/
-.btn-lilac,
-.btn-blank {
+.btn {
   font-weight: 600;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -101,12 +100,40 @@ footer {
   border: 1px solid var(--clr-shadow);
 }
 
+.btn-blank:hover {
+  background-color: var(--clr-shadow);
+  color: var(--clr-text-dark);
+}
+
+.btn-blank:active {
+  background-color: transparent;
+  color: var(--clr-text);
+  border: 1px solid var(--clr-shadow);
+}
+
 .btn-lilac:hover {
   background-color: var(--clr-secondary);
 }
 
 .btn-lilac:active {
   background-color: var(--clr-primary);
+}
+
+.btn-logout {
+  background-color: transparent;
+  color: var(--clr-danger);
+  border: 1px solid var(--clr-danger);
+}
+
+.btn-logout:hover {
+  background-color: var(--clr-danger);
+  color: var(--clr-text-light);
+}
+
+.btn-logout:active {
+  background-color: transparent;
+  color: var(--clr-danger);
+  border: 1px solid var(--clr-danger);
 }
 
 /*Spinner*/
@@ -268,10 +295,25 @@ footer {
   color: var(--clr-text);
 }
 
-.admin-card {
+.admin-card,
+.section-form {
   box-shadow: 0 0 5px var(--clr-shadow);
   padding: 2rem 1.5rem;
   border-radius: 8px;
+}
+
+.page-generic {
+  justify-items: center;
+  align-content: center;
+  padding: 2rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.admin-page {
+  display: grid;
+  gap: 2rem;
+  margin: 2rem;
 }
 
 /*Dashboard*/
@@ -326,6 +368,41 @@ label {
   gap: 1rem;
 }
 
+.page-generic .section-form {
+  max-width: 420px;
+}
+
+.page-generic h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.form-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.page-generic .form-input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+.page-generic .btn-lilac {
+  padding: 0.75rem;
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+}
+
+.page-generic label {
+  font-size: 0.95rem;
+}
+
+.form-footer {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
 /*Overlay*/
 .overlay {
   position: fixed;
@@ -347,4 +424,19 @@ label {
   border-radius: 12px;
   width: 100%;
   max-width: 500px;
+}
+
+.link{
+  cursor: pointer;
+  color: var(--clr-primary);
+}
+.link:hover{
+  color: var(--clr-secondary);
+}
+.link:active{
+  color: var(--clr-primary);
+}
+
+.btn-container .btn-lilac {
+  margin-top: 0;
 }

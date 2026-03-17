@@ -1,5 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { useProductStore } from '../../store/productStore';
+import { useState } from 'react';
+import { useProductStore } from '@/store/productStore';
+import { createProduct as createProductAPI } from '@/services/apiProduct';
 
 function FormAddPorduct() {
   const {
@@ -9,25 +11,71 @@ function FormAddPorduct() {
     formState: { errors },
   } = useForm();
   const addProduct = useProductStore((state) => state.addProduct);
-  const onSubmit = (data) => {
-    addProduct(data);
-    reset();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const onSubmit = async (data) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const productData = {
+        sku: data.sku,
+        name: data.name,
+        description: data.description,
+        image: data.image,
+        category: data.category,
+        price: parseFloat(data.price),
+        amount: parseInt(data.amount),
+      };
+      
+      const result = await createProductAPI(productData);
+      if (result?.id) {
+        addProduct({ ...productData, id: result.id, id_product: result.id });
+        reset();
+      } else {
+        setError('Error al crear el producto');
+      }
+    } catch (err) {
+      setError('Error al crear el producto');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <form className="form-products" onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="product-name">Nombre</label>
-      {errors.nombre && (
+      {error && <div className="alert-error">{error}</div>}
+      <label htmlFor="product-sku">SKU</label>
+      {errors.sku && (
         <span role="alert" className="alert-message">
-          {errors.nombre.message}
+          {errors.sku.message}
         </span>
       )}
       <input
         type="text"
-        name="nombre"
+        name="sku"
+        id="product-sku"
+        className={`form-input ${errors.sku ? 'input-error' : ''}`}
+        placeholder="SKU del producto"
+        {...register('sku', {
+          setValueAs: (value) => value.trim(),
+          required: 'Campo obligatorio',
+        })}
+      />
+
+      <label htmlFor="product-name">Nombre</label>
+      {errors.name && (
+        <span role="alert" className="alert-message">
+          {errors.name.message}
+        </span>
+      )}
+      <input
+        type="text"
+        name="name"
         id="product-name"
-        className={`form-input ${errors.nombre ? 'input-error' : ''}`}
+        className={`form-input ${errors.name ? 'input-error' : ''}`}
         placeholder="Nombre del producto"
-        {...register('nombre', {
+        {...register('name', {
           setValueAs: (value) => value.trim(),
 
           required: 'Campo obligatorio',
@@ -35,17 +83,17 @@ function FormAddPorduct() {
       />
 
       <label htmlFor="product-desc">Descripcion</label>
-      {errors.descripcion && (
+      {errors.description && (
         <span role="alert" className="alert-message">
-          {errors.descripcion.message}
+          {errors.description.message}
         </span>
       )}
       <textarea
-        name="descripcion"
+        name="description"
         id="product-desc"
-        className={`form-input form-textarea ${errors.descripcion ? 'input-error' : ''}`}
+        className={`form-input form-textarea ${errors.description ? 'input-error' : ''}`}
         placeholder="Descripcion detallada del producto"
-        {...register('descripcion', {
+        {...register('description', {
           setValueAs: (value) => value.trim(),
           required: 'Campo obligatorio',
         })}
@@ -54,18 +102,18 @@ function FormAddPorduct() {
       <div className="two-on-row">
         <div>
           <label htmlFor="product-price">Precio</label>
-          {errors.precio && (
+          {errors.price && (
             <span role="alert" className="alert-message">
-              {errors.precio.message}
+              {errors.price.message}
             </span>
           )}
           <input
             type="number"
-            name="precio"
+            name="price"
             id="product-price"
-            className={`form-input ${errors.precio ? 'input-error' : ''}`}
+            className={`form-input ${errors.price ? 'input-error' : ''}`}
             placeholder="0.00"
-            {...register('precio', {
+            {...register('price', {
               required: 'Campo obligatorio',
               setValueAs: (value) => value.trim(),
               min: {
@@ -77,37 +125,37 @@ function FormAddPorduct() {
         </div>
         <div>
           <label htmlFor="product-category">Categoria</label>
-          {errors.categoria && (
+          {errors.category && (
             <span role="alert" className="alert-message">
-              {errors.categoria.message}
+              {errors.category.message}
             </span>
           )}
           <input
             type="text"
-            name="categoria"
+            name="category"
             id="product-category"
-            className={`form-input ${errors.categoria ? 'input-error' : ''}`}
+            className={`form-input ${errors.category ? 'input-error' : ''}`}
             placeholder="Categoria del producto (ej. Alimento, Juguetes)"
-            {...register('categoria', {
+            {...register('category', {
               setValueAs: (value) => value.trim(),
               required: 'Campo obligatorio',
             })}
           />
         </div>
       </div>
-      <label htmlFor="product-img">URL de la imagen</label>
-      {errors.imagen && (
+      <label htmlFor="product-image">URL de la imagen</label>
+      {errors.image && (
         <span role="alert" className="alert-message">
-          {errors.imagen.message}
+          {errors.image.message}
         </span>
       )}
       <input
         type="text"
-        name="imagen"
-        id="product-img"
-        className={`form-input ${errors.imagen ? 'input-error' : ''}`}
+        name="image"
+        id="product-image"
+        className={`form-input ${errors.image ? 'input-error' : ''}`}
         placeholder="https://placehold.co/300x200.png?text=example"
-        {...register('imagen', {
+        {...register('image', {
           setValueAs: (value) => value.trim(),
           required: 'Campo obligatorio',
           pattern: {
@@ -117,19 +165,19 @@ function FormAddPorduct() {
         })}
       />
 
-      <label htmlFor="product-stock">Stock</label>
-      {errors.stock && (
+      <label htmlFor="product-amount">Stock</label>
+      {errors.amount && (
         <span role="alert" className="alert-message">
-          {errors.stock.message}
+          {errors.amount.message}
         </span>
       )}
       <input
         type="number"
-        name="stock"
-        id="product-stock"
-        className={`form-input ${errors.stock ? 'input-error' : ''}`}
+        name="amount"
+        id="product-amount"
+        className={`form-input ${errors.amount ? 'input-error' : ''}`}
         placeholder="0"
-        {...register('stock', {
+        {...register('amount', {
           setValueAs: (value) => value.trim(),
           min: {
             value: 0,
@@ -138,8 +186,8 @@ function FormAddPorduct() {
           required: 'Campo obligatorio',
         })}
       />
-      <button type="submit" className="btn-lilac">
-        Agregar producto
+      <button type="submit" className="btn btn-lilac" disabled={loading}>
+        {loading ? 'Agregando...' : 'Agregar producto'}
       </button>
     </form>
   );

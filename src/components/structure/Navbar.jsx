@@ -1,13 +1,21 @@
-import icon from '/src/assets/icons/pet-supplies.svg';
-import SearchBar from '../generic/SearchBar';
+import icon from '@/assets/icons/pet-supplies.svg';
+import SearchBar from '@/components/generic/SearchBar';
+import AuthSection from '@/components/generic/AuthSection';
+import { useUserStore } from '@/store/userStore';
 
 function Navbar({ activeView, setActiveView }) {
+  const user = useUserStore((state) => state.user);
+  const isAuthenticated = useUserStore((state) => state.isAuthenticated);
+
   const navItems = [
     { id: 'start', label: 'Inicio' },
     { id: 'products', label: 'Productos' },
     { id: 'contact', label: 'Contacto' },
-    { id: 'admin', label: 'Administracion' },
   ];
+
+  if (isAuthenticated && user?.role === 'admin') {
+    navItems.push({ id: 'admin', label: 'Administración' });
+  }
 
   return (
     <header>
@@ -27,6 +35,9 @@ function Navbar({ activeView, setActiveView }) {
                 {item.label}
               </li>
             ))}
+            <li>
+              <AuthSection setActiveView={setActiveView} />
+            </li>
           </ul>
         </div>
       </nav>

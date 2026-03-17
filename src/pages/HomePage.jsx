@@ -12,7 +12,7 @@ function StartPage({ setActiveView }) {
       </p>
       <button
         type="button"
-        className="btn-lilac"
+        className="btn btn-lilac"
         onClick={() => setActiveView('products')}
       >
         Ver productos

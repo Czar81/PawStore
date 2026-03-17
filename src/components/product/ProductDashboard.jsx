@@ -1,9 +1,52 @@
-import { useProductStore } from '../../store/productStore';
+import { useEffect, useState } from 'react';
+import { useProductStore } from '@/store/productStore';
+import { getProducts, deleteProduct as deleteProductAPI } from '@/services/apiProduct';
 
 function ProductDashboard() {
   const products = useProductStore((state) => state.products);
+  const setProducts = useProductStore((state) => state.setProducts);
   const setSelectedId = useProductStore((state) => state.setSelectedProductId);
   const deleteProduct = useProductStore((state) => state.deleteProduct);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await getProducts();
+        if (Array.isArray(data)) {
+          setProducts(data);
+        }
+      } catch (err) {
+        setError('Error al cargar los productos');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProducts();
+  }, [setProducts]);
+
+  const handleDelete = async (id) => {
+    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+      try {
+        await deleteProductAPI(id);
+        deleteProduct(id);
+      } catch (err) {
+        setError('Error al eliminar el producto');
+        console.error(err);
+      }
+    }
+  };
+  if (loading) {
+    return <div className="loading">Cargando productos...</div>;
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
   return (
     <table className="dashboard">
       <thead>
@@ -11,15 +54,15 @@ function ProductDashboard() {
           <th>ID</th>
           <th>NOMBRE</th>
           <th>PRECIO</th>
-          <th>CATEGORIA</th>
           <th>STOCK</th>
+          <th>Category</th>
           <th className="dashboard-actions">Actions</th>
         </tr>
       </thead>
       <tbody className="dashboard-body">
         {products.length === 0 ? (
           <tr>
-            <td colSpan="6" className="no-data">
+            <td colSpan="5" className="no-data">
               No hay productos disponibles
             </td>
           </tr>
@@ -28,22 +71,22 @@ function ProductDashboard() {
             return (
               <tr key={product.id}>
                 <td className="dashboard-cell">{product.id}</td>
-                <td className="dashboard-cell">{product.nombre}</td>
-                <td className="dashboard-cell">₡{product.precio}</td>
-                <td className="dashboard-cell"><span className="dashboard-category">{product.categoria}</span></td>
-                <td className="dashboard-cell">{product.stock}</td>
+                <td className="dashboard-cell">{product.name }</td>
+                <td className="dashboard-cell">₡{product.price}</td>
+                <td className="dashboard-cell">{product.amount}</td>
+                <td className="dashboard-cell">{product.category}</td>
                 <td className="dashboard-cell dashboard-actions">
                   <button
-                    className="btn-lilac"
+                    className="btn btn-lilac"
                     type="button"
                     onClick={() => setSelectedId(product.id)}
                   >
                     Editar
                   </button>
                   <button
-                    className="btn-lilac"
+                    className="btn btn-lilac"
                     type="button"
-                    onClick={() => deleteProduct(product.id)}
+                    onClick={() => handleDelete(product.id_product || product.id)}
                   >
                     Eliminar
                   </button>

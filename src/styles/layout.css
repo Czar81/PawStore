@@ -27,8 +27,15 @@ nav {
   display: flex;
   gap: 1.5rem;
   list-style: none;
+  align-items: center;
   margin: 0;
   padding: 0;
+}
+
+.nav-auth {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 /*Main*/
@@ -64,11 +71,6 @@ nav {
   padding: 1rem;
 }
 
-.admin-page {
-  padding: 2rem;
-  display: grid;
-  gap: 2rem;
-}
 
 /*Footer*/
 footer {
@@ -140,6 +142,7 @@ footer {
 /*form*/
 
 .form-products,
+.form-generic,
 .two-on-row > div {
   display: flex;
   flex-direction: column;
@@ -159,6 +162,10 @@ footer {
 .form-input {
   width: 100%;
   padding: 0.5rem 1rem;
+}
+
+.section-form{
+  width: 100%;
 }
 
 /*Erro*/

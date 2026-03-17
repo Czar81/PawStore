@@ -1,7 +1,7 @@
-import ProductDashboard from '../components/product/ProductDashboard';
-import FormAddPorduct from '../components/forms/FormAddProduct';
-import FormEditProduct from '../components/forms/FormEditProduct';
-import { useProductStore } from '../store/productStore';
+import ProductDashboard from '@/components/product/ProductDashboard';
+import FormAddPorduct from '@/components/forms/FormAddProduct';
+import FormEditProduct from '@/components/forms/FormEditProduct';
+import { useProductStore } from '@/store/productStore';
 
 function AdminPage() {
   const selectedProduct = useProductStore((state) =>

@@ -1,6 +1,6 @@
-import ProductCard from '../components/product/ProductCard';
-import NotFound from '../components/generic/NotFound';
-import { useProductStore } from '../store/productStore';
+import ProductCard from '@/components/product/ProductCard';
+import NotFound from '@/components/generic/NotFound';
+import { useProductStore } from '@/store/productStore';
 
 function CatalogPage({ setActiveView }) {
   const setSelectedProductId = useProductStore(
@@ -8,16 +8,19 @@ function CatalogPage({ setActiveView }) {
   );
   const products = useProductStore((state) => state.products);
 
+
+
   if (products.length === 0) {
     return (
       <main className="main-text">
         <NotFound
           title="No hay productos disponibles por el momento"
-          desc="Intenta cambiar los filtros o la busqueda"
+          desc="Intenta cambiar los filtros o la búsqueda"
         />
       </main>
     );
   }
+
   return (
     <main className="catalog">
       <h2>Catalogo de Productos</h2>
