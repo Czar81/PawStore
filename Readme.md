@@ -19,22 +19,22 @@ Online pet products store. Web application built with React and Vite that allows
 
 1. **Clone the repository**
 
-```bash
-git clone https://github.com/Czar81/PawStore.git
-cd paw-store
-```
+    ```bash
+    git clone https://github.com/Czar81/PawStore.git
+    cd paw-store
+    ```
 
 2. **Install dependencies**
 
-```bash
-npm install
-```
+    ```bash
+    npm install
+    ```
 
 3. **Start development server**
 
-```bash
-npm run dev
-```
+    ```bash
+    npm run dev
+    ```
 
 The application will be available at `http://localhost:5173`
 
@@ -47,22 +47,29 @@ The application will be available at `http://localhost:5173`
 
 ## Project Structure
 
-```
+```bash
 src/
-├── components/        # Reusable components
-│   ├── Navbar.jsx
-│   ├── Footer.jsx
-│   ├── ProductCard.jsx
-│   ├── SearchBar.jsx
-│   ├── spinner.jsx
-│   └── NotFound.jsx
-├── pages/            # Main pages
-│   ├── HomePage.jsx
-│   ├── CatalogPage.jsx
-│   └── ProductPage.jsx
-├── data/             # Static data
-│   └── products.json
-├── styles/           # CSS styles
+├── api/                          
+│   ├── apiClient.js
+│   ├── apiProduct.js
+│   └── user/
+│
+├── assets/                       
+│   └── icons/
+│   
+├── components/                  
+│   ├── forms/                
+│   ├── generic/                  
+│   ├── product/                 
+│   └── structure/                
+│
+├── pages/                       
+├── services/                     
+├── storage/                      
+├── store/                        
+├── styles/                       
+├── utils/                        
+│
 ├── app.jsx
 └── main.jsx
 ```
