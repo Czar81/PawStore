@@ -33,10 +33,10 @@ function FormAddPorduct() {
         addProduct({ ...productData, id: result.id, id_product: result.id });
         reset();
       } else {
-        setError('Error al crear el producto');
+        setError('Error creating product');
       }
     } catch (err) {
-      setError('Error al crear el producto');
+      setError('Error creating product');
       console.error(err);
     } finally {
       setLoading(false);
@@ -56,14 +56,14 @@ function FormAddPorduct() {
         name="sku"
         id="product-sku"
         className={`form-input ${errors.sku ? 'input-error' : ''}`}
-        placeholder="SKU del producto"
+        placeholder="Product SKU"
         {...register('sku', {
           setValueAs: (value) => value.trim(),
-          required: 'Campo obligatorio',
+          required: 'Required field',
         })}
       />
 
-      <label htmlFor="product-name">Nombre</label>
+      <label htmlFor="product-name">Name</label>
       {errors.name && (
         <span role="alert" className="alert-message">
           {errors.name.message}
@@ -74,15 +74,15 @@ function FormAddPorduct() {
         name="name"
         id="product-name"
         className={`form-input ${errors.name ? 'input-error' : ''}`}
-        placeholder="Nombre del producto"
+        placeholder="Product name"
         {...register('name', {
           setValueAs: (value) => value.trim(),
 
-          required: 'Campo obligatorio',
+          required: 'Required field',
         })}
       />
 
-      <label htmlFor="product-desc">Descripcion</label>
+      <label htmlFor="product-desc">Description</label>
       {errors.description && (
         <span role="alert" className="alert-message">
           {errors.description.message}
@@ -92,16 +92,16 @@ function FormAddPorduct() {
         name="description"
         id="product-desc"
         className={`form-input form-textarea ${errors.description ? 'input-error' : ''}`}
-        placeholder="Descripcion detallada del producto"
+        placeholder="Detailed product description"
         {...register('description', {
           setValueAs: (value) => value.trim(),
-          required: 'Campo obligatorio',
+          required: 'Required field',
         })}
       ></textarea>
 
       <div className="two-on-row">
         <div>
-          <label htmlFor="product-price">Precio</label>
+          <label htmlFor="product-price">Price</label>
           {errors.price && (
             <span role="alert" className="alert-message">
               {errors.price.message}
@@ -114,17 +114,17 @@ function FormAddPorduct() {
             className={`form-input ${errors.price ? 'input-error' : ''}`}
             placeholder="0.00"
             {...register('price', {
-              required: 'Campo obligatorio',
+              required: 'Required field',
               setValueAs: (value) => value.trim(),
               min: {
                 value: 0,
-                message: 'No puede ser negativo',
+                message: 'Cannot be negative',
               },
             })}
           />
         </div>
         <div>
-          <label htmlFor="product-category">Categoria</label>
+          <label htmlFor="product-category">Category</label>
           {errors.category && (
             <span role="alert" className="alert-message">
               {errors.category.message}
@@ -135,15 +135,15 @@ function FormAddPorduct() {
             name="category"
             id="product-category"
             className={`form-input ${errors.category ? 'input-error' : ''}`}
-            placeholder="Categoria del producto (ej. Alimento, Juguetes)"
+            placeholder="Product category (e.g. Food, Toys)"
             {...register('category', {
               setValueAs: (value) => value.trim(),
-              required: 'Campo obligatorio',
+              required: 'Required field',
             })}
           />
         </div>
       </div>
-      <label htmlFor="product-image">URL de la imagen</label>
+      <label htmlFor="product-image">Image URL</label>
       {errors.image && (
         <span role="alert" className="alert-message">
           {errors.image.message}
@@ -157,10 +157,10 @@ function FormAddPorduct() {
         placeholder="https://placehold.co/300x200.png?text=example"
         {...register('image', {
           setValueAs: (value) => value.trim(),
-          required: 'Campo obligatorio',
+          required: 'Required field',
           pattern: {
             value: /^https?:\/\/.+/,
-            message: 'Debe ser una URL válida',
+            message: 'Must be a valid URL',
           },
         })}
       />
@@ -181,13 +181,13 @@ function FormAddPorduct() {
           setValueAs: (value) => value.trim(),
           min: {
             value: 0,
-            message: 'No puede ser negativo',
+            message: 'Cannot be negative',
           },
-          required: 'Campo obligatorio',
+          required: 'Required field',
         })}
       />
       <button type="submit" className="btn btn-lilac" disabled={loading}>
-        {loading ? 'Agregando...' : 'Agregar producto'}
+        {loading ? 'Adding...' : 'Add product'}
       </button>
     </form>
   );

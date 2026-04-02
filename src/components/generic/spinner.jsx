@@ -1,4 +1,4 @@
-function Spinner({ size = 40, text = 'Cargando...' }) {
+function Spinner({ size = 40, text = 'Loading...' }) {
   return (
     <>
       <div className="spinner" style={{ width: size, height: size }} />
