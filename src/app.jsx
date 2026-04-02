@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/structure/Navbar';
 import Footer from './components/structure/Footer';
 import ProtectedRoute from './components/structure/ProtectedRoute';
@@ -8,6 +9,10 @@ import SignupPage from './pages/SignupPage';
 import CatalogPage from './pages/CatalogPage';
 import ProductPage from './pages/ProductPage';
 import AdminPage from './pages/AdminPage';
+import CheckoutPage from './pages/CheckoutPage';
+import ThankYouPage from './pages/ThankYouPage';
+import ContactPage from './pages/ContactPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { useProductStore } from './store/productStore';
 import { useUserStore } from './store/userStore';
 import { getProducts } from '@/services/apiProduct';
@@ -16,13 +21,10 @@ import { getProfile } from '@/services/user/apiUser';
 import Spinner from './components/generic/spinner';
 
 function App() {
-  const [activeView, setActiveView] = useState('start');
   const setProducts = useProductStore((state) => state.setProducts);
   const [loading, setLoading] = useState(true);
-  const isAuthenticated = useUserStore((state) => state.isAuthenticated);
-  const user = useUserStore((state) => state.user);
-  const logout = useUserStore((state) => state.logout);
   const setUser = useUserStore((state) => state.setUser);
+  const logout = useUserStore((state) => state.logout);
 
   useEffect(() => {
     async function initialize() {
@@ -37,9 +39,6 @@ function App() {
               email: profile.email,
               role: profile.role || 'user',
             });
-            if (profile.role === 'admin') {
-              setActiveView('admin');
-            }
           }
         } else {
           logout();
@@ -50,7 +49,7 @@ function App() {
           setProducts(products);
         }
       } catch (err) {
-        console.error('Error al inicializar la app:', err);
+        console.error('Error initializing app:', err);
       } finally {
         setLoading(false);
       }
@@ -59,51 +58,40 @@ function App() {
     initialize();
   }, []);
 
-  useEffect(() => {
-    if (activeView === 'admin') {
-      if (!isAuthenticated || user?.role !== 'admin') {
-        setActiveView('start');
-      }
-    }
-  }, [activeView, isAuthenticated, user]);
-
-  if (loading && activeView !== 'login' && activeView !== 'signup') {
-    {
-      return (
-        <>
-          <Navbar activeView={activeView} setActiveView={setActiveView} />
-          <main className="main-text">
-            <Spinner />
-          </main>
-          <Footer />
-        </>
-      );
-    }
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <main className="main-text">
+          <Spinner />
+        </main>
+        <Footer />
+      </>
+    );
   }
+
   return (
     <>
-      <Navbar activeView={activeView} setActiveView={setActiveView} />
-
-      {activeView === 'start' && <HomePage setActiveView={setActiveView} />}
-
-      {activeView === 'login' && <LoginPage setActiveView={setActiveView} />}
-
-      {activeView === 'signup' && <SignupPage setActiveView={setActiveView} />}
-
-      {activeView === 'products' && (
-        <CatalogPage setActiveView={setActiveView} />
-      )}
-
-      {activeView === 'product' && (
-        <ProductPage setActiveView={setActiveView} />
-      )}
-
-      {activeView === 'admin' && (
-        <ProtectedRoute requiredRoles={['admin']}>
-          <AdminPage setActiveView={setActiveView} />
-        </ProtectedRoute>
-      )}
-
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<CatalogPage />} />
+        <Route path="/products/:id" element={<ProductPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/thanks" element={<ThankYouPage />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute requiredRoles={['admin']}>
+              <AdminPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
       <Footer />
     </>
   );

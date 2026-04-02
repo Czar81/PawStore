@@ -1,28 +1,24 @@
-function StartPage({ setActiveView }) {
+import { Link } from 'react-router-dom';
+
+function HomePage() {
   return (
     <main className="main-text">
-      <h2>Bienvenido a PawStore</h2>
+      <h2>Welcome to PawStore</h2>
       <p>
-        Somos una tienda dedicada a ofrecer productos de calidad para tus
-        mascotas.
+        We are a store dedicated to offering quality products for your pets.
       </p>
       <p>
-        Explora nuestro catálogo para encontrar camas, juguetes, accesorios y
-        más.
+        Explore our catalog to find beds, toys, accessories and more.
       </p>
-      <button
-        type="button"
-        className="btn btn-lilac"
-        onClick={() => setActiveView('products')}
-      >
-        Ver productos
-      </button>
+      <Link to="/products" className="btn btn-lilac">
+        View products
+      </Link>
       <small>
-        Esta es la página principal de la aplicación. Más adelante aquí se
-        podrán mostrar productos destacados.
+        This is the main page of the application. Later on, featured products
+        could be shown here.
       </small>
     </main>
   );
 }
 
-export default StartPage;
+export default HomePage;

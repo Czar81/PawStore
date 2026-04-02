@@ -1,21 +1,18 @@
+import { useNavigate } from 'react-router-dom';
+import { useProductStore } from '@/store/productStore';
 import ProductCard from '@/components/product/ProductCard';
 import NotFound from '@/components/generic/NotFound';
-import { useProductStore } from '@/store/productStore';
 
-function CatalogPage({ setActiveView }) {
-  const setSelectedProductId = useProductStore(
-    (state) => state.setSelectedProductId
-  );
+function CatalogPage() {
   const products = useProductStore((state) => state.products);
-
-
+  const navigate = useNavigate();
 
   if (products.length === 0) {
     return (
       <main className="main-text">
         <NotFound
-          title="No hay productos disponibles por el momento"
-          desc="Intenta cambiar los filtros o la búsqueda"
+          title="No products available at the moment"
+          desc="Try changing filters or search"
         />
       </main>
     );
@@ -23,16 +20,13 @@ function CatalogPage({ setActiveView }) {
 
   return (
     <main className="catalog">
-      <h2>Catalogo de Productos</h2>
+      <h2>Product Catalog</h2>
       <div className="products-container">
         {products.map((product) => (
           <ProductCard
             product={product}
             key={product.id}
-            onClick={() => {
-              setActiveView('product');
-              setSelectedProductId(product.id);
-            }}
+            onClick={() => navigate(`/products/${product.id}`)}
           />
         ))}
       </div>
