@@ -47,7 +47,7 @@ function Navbar() {
               </li>
             ))}
             <li>
-              <Link to="/checkout" className="cart-link nav-items">
+              <Link to="/cart" className="cart-link nav-items">
                 <img src={cartIcon} alt="" className='icon'/>
                 {cartCount > 0 && (
                   <span className="cart-badge">{cartCount}</span>
