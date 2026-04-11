@@ -1,15 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { useCartStore } from '@/store/cartStore';
+import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 import { createOrder } from '@/services/apiOrder';
 import { useState } from 'react';
 import CheckoutForm from '@/components/forms/FormCheckout';
 
 function CheckoutPage() {
-  const cart = useCartStore((state) => state.cart);
-  const total = useCartStore((state) =>
-    state.cart.reduce((sum, item) => sum + item.subtotal, 0)
-  );
-  const clearCart = useCartStore((state) => state.clearCart);
+  const { cart, total, clearCart } = useCart();
+  const { isAuthenticated, isLoading } = useAuth();
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -27,6 +25,31 @@ function CheckoutPage() {
         >
           View products
         </button>
+      </main>
+    );
+  }
+
+  if (!isLoading && !isAuthenticated) {
+    return (
+      <main className="main-text">
+        <h2>Sign in to continue</h2>
+        <p>You need to be logged in to place an order.</p>
+        <div className="btn-container" style={{ justifyContent: 'center', gap: '1rem' }}>
+          <button
+            className="btn btn-lilac"
+            type="button"
+            onClick={() => navigate('/login')}
+          >
+            Log in
+          </button>
+          <button
+            className="btn btn-blank"
+            type="button"
+            onClick={() => navigate('/register')}
+          >
+            Create account
+          </button>
+        </div>
       </main>
     );
   }

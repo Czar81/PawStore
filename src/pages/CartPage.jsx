@@ -1,14 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { useCartStore } from '@/store/cartStore';
+import { useCart } from '@/context/CartContext';
 
 function CartPage() {
-  const cart = useCartStore((state) => state.cart);
-  const total = useCartStore((state) =>
-    state.cart.reduce((sum, item) => sum + item.subtotal, 0)
-  );
-  const clearCart = useCartStore((state) => state.clearCart);
-  const updateQuantity = useCartStore((state) => state.updateQuantity);
-  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const { cart, total, clearCart, updateQuantity, removeFromCart } = useCart();
   const navigate = useNavigate();
 
   if (cart.length === 0) {

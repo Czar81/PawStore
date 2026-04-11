@@ -1,13 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useProductStore } from '@/store/productStore';
-import { useCartStore } from '@/store/cartStore';
+import { useCart } from '@/context/CartContext';
 
 function ProductPage() {
   const { id } = useParams();
   const product = useProductStore((state) =>
     state.products.find((p) => p.id === Number(id))
   );
-  const addToCart = useCartStore((state) => state.addToCart);
+  const { addToCart } = useCart();
   const navigate = useNavigate();
 
   if (!product) {

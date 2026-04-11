@@ -1,11 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { useUserStore } from '@/store/userStore';
+import { useAuth } from '@/context/AuthContext';
 import { logout as logoutAPI } from '@/services/user/authService';
 
 function AuthSection() {
-  const user = useUserStore((state) => state.user);
-  const isAuthenticated = useUserStore((state) => state.isAuthenticated);
-  const logout = useUserStore((state) => state.logout);
+  const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {

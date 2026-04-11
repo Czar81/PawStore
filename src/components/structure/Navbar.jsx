@@ -3,15 +3,13 @@ import dogIcon from '@/assets/icons/pet-supplies.svg';
 import cartIcon from '@/assets/icons/cart.svg';
 import SearchBar from '@/components/generic/SearchBar';
 import AuthSection from '@/components/generic/AuthSection';
-import { useUserStore } from '@/store/userStore';
-import { useCartStore } from '@/store/cartStore';
+import { useAuth } from '@/context/AuthContext';
+import { useCart } from '@/context/CartContext';
 
 function Navbar() {
-  const user = useUserStore((state) => state.user);
-  const isAuthenticated = useUserStore((state) => state.isAuthenticated);
-  const cartCount = useCartStore((state) =>
-    state.cart.reduce((sum, item) => sum + item.quantity, 0)
-  );
+  const { user, isAuthenticated } = useAuth();
+  const { cart } = useCart();
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const location = useLocation();
 
   const navItems = [

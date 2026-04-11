@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUserStore } from '@/store/userStore';
+import { useAuth } from '@/context/AuthContext';
 import { login as loginAPI } from '@/services/user/authService';
 import { getProfile } from '@/services/user/apiUser';
 import FormLogin from '@/components/forms/FormLogin';
 
 function LoginPage() {
-  const setUser = useUserStore((state) => state.setUser);
+  const { setUser } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
