@@ -15,51 +15,34 @@ import ThankYouPage from './pages/ThankYouPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import { useProductStore } from './store/productStore';
-import { useUserStore } from './store/userStore';
+import { useAuth } from './context/AuthContext';
 import { getProducts } from '@/services/apiProduct';
-import { checkSession } from '@/services/user/authService';
-import { getProfile } from '@/services/user/apiUser';
 import Spinner from './components/generic/spinner';
 
 function App() {
   const setProducts = useProductStore((state) => state.setProducts);
-  const [loading, setLoading] = useState(true);
-  const setUser = useUserStore((state) => state.setUser);
-  const logout = useUserStore((state) => state.logout);
+  const { isLoading: authLoading } = useAuth();
+  const [loadingProducts, setLoadingProducts] = useState(true);
 
   useEffect(() => {
-    async function initialize() {
-      setLoading(true);
+    async function initProducts() {
+      setLoadingProducts(true);
       try {
-        const isValid = await checkSession();
-        if (isValid) {
-          const profile = await getProfile();
-          if (profile) {
-            setUser({
-              id: profile.id,
-              email: profile.email,
-              role: profile.role || 'user',
-            });
-          }
-        } else {
-          logout();
-        }
-
         const products = await getProducts();
         if (Array.isArray(products)) {
           setProducts(products);
         }
       } catch (err) {
-        console.error('Error initializing app:', err);
+        console.error('Error fetching products:', err);
       } finally {
-        setLoading(false);
+        setLoadingProducts(false);
       }
     }
 
-    initialize();
-  }, []);
+    initProducts();
+  }, [setProducts]);
 
-  if (loading) {
+  if (authLoading || loadingProducts) {
     return (
       <>
         <Navbar />
