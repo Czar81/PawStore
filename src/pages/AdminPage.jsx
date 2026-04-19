@@ -11,14 +11,14 @@ function AdminPage() {
   return (
     <main className="admin-page">
       <section className="admin-card">
-        <h2>Administración de productos</h2>
+        <h2>Product Administration</h2>
         <p>
-          En esta sección puedes gestionar el catalogo de productos de PawStore
+          In this section you can manage the PawStore product catalog.
         </p>
         <ProductDashboard />
       </section>
       <section className="admin-card">
-        <h2>Agregar un nuevo producto</h2>
+        <h2>Add a new product</h2>
         <FormAddPorduct />
       </section>
       {selectedProduct && <FormEditProduct product={selectedProduct} />}

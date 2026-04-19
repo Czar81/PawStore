@@ -1,19 +1,19 @@
-import { useUserStore } from '@/store/userStore';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/context/AuthContext';
 import { logout as logoutAPI } from '@/services/user/authService';
 
-function AuthSection({ setActiveView }) {
-  const user = useUserStore((state) => state.user);
-  const isAuthenticated = useUserStore((state) => state.isAuthenticated);
-  const logout = useUserStore((state) => state.logout);
+function AuthSection() {
+  const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logoutAPI();
     logout();
-    setActiveView('start');
+    navigate('/');
   };
 
   const handleLoginClick = () => {
-    setActiveView('login');
+    navigate('/login');
   };
 
   return (
@@ -21,18 +21,18 @@ function AuthSection({ setActiveView }) {
       {isAuthenticated && user ? (
         <>
           <span className="nav-user">
-            Sesión: <strong>{user.email}</strong>
+            Session: <strong>{user.email}</strong>
             {user.role === 'admin' && (
               <span className="nav-role admin">admin</span>
             )}
           </span>
           <button className="btn btn-logout" onClick={handleLogout}>
-            Cerrar sesión
+            Logout
           </button>
         </>
       ) : (
         <button className="btn btn-lilac" onClick={handleLoginClick}>
-          Iniciar sesión
+          Login
         </button>
       )}
     </div>

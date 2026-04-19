@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { useUserStore } from '@/store/userStore';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/context/AuthContext';
 import { signUp as signupAPI } from '@/services/user/authService';
 import { getProfile } from '@/services/user/apiUser';
 import FormSignup from '@/components/forms/FormSignup';
 
-function SignupPage({ setActiveView }) {
-  const setUser = useUserStore((state) => state.setUser);
+function SignupPage() {
+  const { setUser } = useAuth();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -13,14 +15,14 @@ function SignupPage({ setActiveView }) {
     setLoading(true);
     setError(null);
     try {
-      const signupResult  = await signupAPI({
+      const signupResult = await signupAPI({
         name: data.name,
         email: data.email,
         password: data.password,
       });
 
-      if (!signupResult ) {
-        setError('Credenciales inválidas. Intenta de nuevo.');
+      if (!signupResult) {
+        setError('Invalid credentials. Please try again.');
         return;
       }
 
@@ -34,12 +36,12 @@ function SignupPage({ setActiveView }) {
           role: userProfile.role || 'user',
           token: signupResult.token,
         });
-        setActiveView(userProfile.role === 'admin' ? 'admin' : 'products');
+        navigate(userProfile.role === 'admin' ? '/admin' : '/products');
       } else {
-        setError('Error al obtener datos del usuario');
+        setError('Error fetching user profile.');
       }
     } catch (err) {
-      setError('Error al iniciar sesión. Por favor, intenta de nuevo.');
+      setError('An error occurred during signup. Please try again.');
       console.error(err);
     } finally {
       setLoading(false);
@@ -49,14 +51,16 @@ function SignupPage({ setActiveView }) {
   return (
     <main className="page-generic">
       <section className="section-form">
-        <h2>Crear una cuenta</h2>
-        <p className="form-subtitle">Crea una cuenta de PawStore</p>
+        <h2>Create an account</h2>
+        <p className="form-subtitle">Create a PawStore account</p>
 
         <FormSignup onSubmit={onSubmit} loading={loading} error={error} />
 
         <div className="form-footer">
-          <p>¿Ya tienes cuenta?</p>
-          <a className='link' onClick={() => setActiveView("login")}>Inicia sesion</a>
+          <p>Already have an account?</p>
+          <a className="link" onClick={() => navigate('/login')}>
+            Login here
+          </a>
         </div>
       </section>
     </main>

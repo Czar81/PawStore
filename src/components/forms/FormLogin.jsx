@@ -11,7 +11,7 @@ function FormLogin({ onSubmit, loading, error }) {
     <form className="form-generic" onSubmit={handleSubmit(onSubmit)}>
       {error && <div className="alert-error">{error}</div>}
 
-      <label htmlFor="email">Correo Electrónico</label>
+      <label htmlFor="email">Email Address</label>
       {errors.email && (
         <span role="alert" className="alert-message">
           {errors.email.message}
@@ -21,17 +21,17 @@ function FormLogin({ onSubmit, loading, error }) {
         type="email"
         id="email"
         className={`form-input ${errors.email ? 'input-error' : ''}`}
-        placeholder="Ingresa tu correo"
+        placeholder="Enter your email"
         {...register('email', {
-          required: 'El correo es obligatorio',
+          required: 'Email is required',
           minLength: {
             value: 3,
-            message: 'El correo debe tener al menos 3 caracteres',
+            message: 'Email must be at least 3 characters',
           },
         })}
       />
 
-      <label htmlFor="password">Contraseña</label>
+      <label htmlFor="password">Password</label>
       {errors.password && (
         <span role="alert" className="alert-message">
           {errors.password.message}
@@ -41,18 +41,18 @@ function FormLogin({ onSubmit, loading, error }) {
         type="password"
         id="password"
         className={`form-input ${errors.password ? 'input-error' : ''}`}
-        placeholder="Ingresa tu contraseña"
+        placeholder="Enter your password"
         {...register('password', {
-          required: 'La contraseña es obligatoria',
+          required: 'Password is required',
           minLength: {
             value: 6,
-            message: 'La contraseña debe tener al menos 6 caracteres',
+            message: 'Password must be at least 6 characters',
           },
         })}
       />
 
       <button type="submit" className="btn-lilac btn" disabled={loading}>
-        {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+        {loading ? 'Logging in...' : 'Login'}
       </button>
     </form>
   );

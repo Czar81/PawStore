@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { useUserStore } from '@/store/userStore';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/context/AuthContext';
 import { login as loginAPI } from '@/services/user/authService';
 import { getProfile } from '@/services/user/apiUser';
 import FormLogin from '@/components/forms/FormLogin';
 
-function LoginPage({ setActiveView }) {
-  const setUser = useUserStore((state) => state.setUser);
+function LoginPage() {
+  const { setUser } = useAuth();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -19,8 +21,7 @@ function LoginPage({ setActiveView }) {
       });
 
       if (!loginResult) {
-        console.log(loginResult)
-        setError('Credenciales inválidas. Intenta de nuevo.');
+        setError('Invalid credentials. Please try again.');
         return;
       }
 
@@ -33,12 +34,12 @@ function LoginPage({ setActiveView }) {
           role: userProfile.role || 'user',
           token: loginResult.token,
         });
-        setActiveView(userProfile.role === 'admin' ? 'admin' : 'products');
+        navigate(userProfile.role === 'admin' ? '/admin' : '/products');
       } else {
-        setError('Error al obtener datos del usuario');
+        setError('Error fetching user profile.');
       }
     } catch (err) {
-      setError('Error al iniciar sesión. Por favor, intenta de nuevo.');
+      setError('An error occurred during login. Please try again.');
       console.error(err);
     } finally {
       setLoading(false);
@@ -48,14 +49,16 @@ function LoginPage({ setActiveView }) {
   return (
     <main className="page-generic">
       <section className="section-form">
-        <h2>Iniciar Sesión</h2>
-        <p className="login-subtitle">Accede a tu cuenta de PawStore</p>
+        <h2>Login</h2>
+        <p className="login-subtitle">Access your PawStore account</p>
 
         <FormLogin onSubmit={onSubmit} loading={loading} error={error} />
 
         <div className="form-footer">
-          <p>¿No tienes cuenta?</p>
-          <a className='link' onClick={() => setActiveView("signup")}>Crea una aqui</a>
+          <p>Don't have an account?</p>
+          <a className="link" onClick={() => navigate('/signup')}>
+            Create one here
+          </a>
         </div>
       </section>
     </main>

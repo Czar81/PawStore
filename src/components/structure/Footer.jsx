@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <small>© PawStore 2025 — Todos los derechos reservados.</small>
+      <small>© PawStore 2025 — All rights reserved.</small>
       <div className="social-media">
         <a className="social-media-link" href="">
           Instagram

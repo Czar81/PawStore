@@ -1,47 +1,64 @@
-import icon from '@/assets/icons/pet-supplies.svg';
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import dogIcon from '@/assets/icons/pet-supplies.svg';
+import cartIcon from '@/assets/icons/cart.svg';
 import SearchBar from '@/components/generic/SearchBar';
 import AuthSection from '@/components/generic/AuthSection';
-import { useUserStore } from '@/store/userStore';
+import { useAuth } from '@/context/AuthContext';
+import { useCart } from '@/context/CartContext';
 
-function Navbar({ activeView, setActiveView }) {
-  const user = useUserStore((state) => state.user);
-  const isAuthenticated = useUserStore((state) => state.isAuthenticated);
+function Navbar() {
+  const { user, isAuthenticated } = useAuth();
+  const { cart } = useCart();
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const location = useLocation();
 
   const navItems = [
-    { id: 'start', label: 'Inicio' },
-    { id: 'products', label: 'Productos' },
-    { id: 'contact', label: 'Contacto' },
+    { to: '/', label: 'Home' },
+    { to: '/products', label: 'Products' },
+    { to: '/contact', label: 'Contact' },
   ];
 
   if (isAuthenticated && user?.role === 'admin') {
-    navItems.push({ id: 'admin', label: 'Administración' });
+    navItems.push({ to: '/admin', label: 'Admin' });
   }
 
   return (
     <header>
       <nav>
         <div className="nav-right">
-          <img className="nav-icon" src={icon} alt="Dog icon" />
+          <img className="nav-icon" src={dogIcon} alt="Dog icon" />
           <h1 id="nav-title">PawStore</h1>
         </div>
         <div className="nav-left">
           <ul>
             {navItems.map((item) => (
-              <li
-                key={item.id}
-                className={`nav-items ${activeView === item.id ? 'nav-items-active' : ''}`}
-                onClick={() => setActiveView(item.id)}
-              >
-                {item.label}
+              <li key={item.to}>
+                <NavLink
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `nav-items ${isActive ? 'nav-items-active' : ''}`
+                  }
+                  end={item.to === '/'}
+                >
+                  {item.label}
+                </NavLink>
               </li>
             ))}
             <li>
-              <AuthSection setActiveView={setActiveView} />
+              <Link to="/cart" className="cart-link nav-items">
+                <img src={cartIcon} alt="" className='icon'/>
+                {cartCount > 0 && (
+                  <span className="cart-badge">{cartCount}</span>
+                )}
+              </Link>
+            </li>
+            <li>
+              <AuthSection />
             </li>
           </ul>
         </div>
       </nav>
-      {activeView === 'products' && (
+      {location.pathname === '/products' && (
         <div>
           <SearchBar />
         </div>

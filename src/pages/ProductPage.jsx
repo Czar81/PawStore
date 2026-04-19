@@ -1,43 +1,64 @@
+import { useParams, useNavigate } from 'react-router-dom';
 import { useProductStore } from '@/store/productStore';
+import { useCart } from '@/context/CartContext';
 
-function ProductPage({ setActiveView }) {
-  const product = useProductStore((state) => state.getSelectedProduct());
-  
+function ProductPage() {
+  const { id } = useParams();
+  const product = useProductStore((state) =>
+    state.products.find((p) => p.id === Number(id))
+  );
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
+
   if (!product) {
     return (
       <main className="main-text">
-        <h2>Producto no encontrado</h2>
-        <p>El producto que buscas no existe o ha sido eliminado.</p>
+        <h2>Product not found</h2>
+        <p>The product you are looking for does not exist or has been removed.</p>
         <button
-          className="btn-lilac"
+          className="btn btn-lilac"
           type="button"
-          onClick={() => setActiveView('products')}
+          onClick={() => navigate('/products')}
         >
-          Volver al catalogo
+          Back to catalog
         </button>
       </main>
     );
   }
+
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
+
   return (
     <main className="product-details">
       <div className="img-product-container">
-        <img className="img-product" src={product.imagen || 'https://via.placeholder.com/400'} alt="Product image" />
+        <img
+          className="img-product"
+          src={product.image || 'https://placehold.co/400?text=No+Image'}
+          alt="Product image"
+        />
       </div>
       <div className="product-desc">
-        <h2 className="title">{product.name || 'Sin nombre'}</h2>
-        <p className="price">₡{product.price  || 0}</p>
-        <p className="category">{product.categoria || 'Sin categoría'}</p>
-        <p className="description">{product.descripcion || 'Sin descripción'}</p>
-        <small>
-          Más adelante aquí se podrá agregar este producto al carrito y
-          completar la compra.
-        </small>
+        <h2 className="title">{product.name || 'No name'}</h2>
+        <p className="price">₡{product.price || 0}</p>
+        <p className="category">{product.category || 'No category'}</p>
+        <p className="description">
+          {product.description || 'No description'}
+        </p>
         <button
           className="btn btn-lilac"
           type="button"
-          onClick={() => setActiveView('products')}
+          onClick={handleAddToCart}
         >
-          Volver al catalogo
+          Add to cart
+        </button>
+        <button
+          className="btn btn-blank"
+          type="button"
+          onClick={() => navigate('/products')}
+        >
+          Back to catalog
         </button>
       </div>
     </main>

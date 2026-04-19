@@ -56,10 +56,10 @@ function EditProductPage({ product }) {
         updateProductStore(productId, productData);
         clearSelectedProductId();
       } else {
-        setError('Error al actualizar el producto');
+        setError('Error updating product');
       }
     } catch (err) {
-      setError('Error al actualizar el producto');
+      setError('Error updating product');
       console.error(err);
     } finally {
       setLoading(false);
@@ -69,11 +69,11 @@ function EditProductPage({ product }) {
   return (
     <div className="overlay">
       <div className="overlay-card">
-        <h2>Editar producto</h2>
+        <h2>Edit Product</h2>
 
         <form className="form-products" onSubmit={handleSubmit(onSubmit)}>
           {error && <div className="alert-error">{error}</div>}
-          <label htmlFor="sku">SKU:</label>
+          <label htmlFor="sku">SKU</label>
           <input
             type="text"
             id="sku"
@@ -81,7 +81,7 @@ function EditProductPage({ product }) {
             {...register('sku', { required: true })}
           />
 
-          <label htmlFor="name">Nombre:</label>
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
@@ -89,7 +89,7 @@ function EditProductPage({ product }) {
             {...register('name', { required: true })}
           />
 
-          <label htmlFor="description">Descripción:</label>
+          <label htmlFor="description">Description</label>
           <textarea
             type="text"
             id="description"
@@ -97,7 +97,7 @@ function EditProductPage({ product }) {
             {...register('description', { required: true })}
           />
 
-          <label htmlFor="price">Precio:</label>
+          <label htmlFor="price">Price</label>
           <input
             type="number"
             id="price"
@@ -105,7 +105,7 @@ function EditProductPage({ product }) {
             {...register('price', { required: true })}
           />
 
-          <label htmlFor="category">Categoría:</label>
+          <label htmlFor="category">Category</label>
           <input
             type="text"
             id="category"
@@ -113,7 +113,7 @@ function EditProductPage({ product }) {
             {...register('category', { required: true })}
           />
 
-          <label htmlFor="image">Imagen URL:</label>
+          <label htmlFor="image">Image URL</label>
           <input
             type="text"
             id="image"
@@ -121,7 +121,7 @@ function EditProductPage({ product }) {
             {...register('image', { required: true })}
           />
 
-          <label htmlFor="amount">Stock:</label>
+          <label htmlFor="amount">Stock</label>
           <input
             type="number"
             id="amount"
@@ -136,11 +136,11 @@ function EditProductPage({ product }) {
               onClick={clearSelectedProductId}
               disabled={loading}
             >
-              Cancelar
+              Cancel
             </button>
 
             <button className="btn btn-lilac" type="submit" disabled={loading}>
-              {loading ? 'Guardando...' : 'Guardar cambios'}
+              {loading ? 'Saving...' : 'Save Changes'}
             </button>
           </div>
         </form>

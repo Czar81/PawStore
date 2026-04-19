@@ -369,7 +369,7 @@ label {
 }
 
 .page-generic .section-form {
-  max-width: 420px;
+  max-width: 500px;
 }
 
 .page-generic h2 {
@@ -426,17 +426,114 @@ label {
   max-width: 500px;
 }
 
-.link{
+.link {
   cursor: pointer;
   color: var(--clr-primary);
 }
-.link:hover{
+
+.link:hover {
   color: var(--clr-secondary);
 }
-.link:active{
+
+.link:active {
   color: var(--clr-primary);
 }
 
 .btn-container .btn-lilac {
   margin-top: 0;
+}
+
+/*Cart badge*/
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: var(--clr-primary);
+  color: var(--clr-text-light);
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Quantity controls*/
+.btn-qty {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--clr-shadow);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.btn-qty:hover {
+  background-color: var(--clr-shadow-light);
+}
+
+.qty-value {
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+
+.btn-remove {
+  background: transparent;
+  border: none;
+  color: var(--clr-danger);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.btn-remove:hover {
+  transform: scale(1.2);
+}
+
+.cart-subtotal {
+  font-weight: 600;
+  color: var(--clr-primary);
+}
+
+/*Checkout*/
+.checkout-error {
+  color: var(--clr-danger);
+  font-weight: 600;
+  text-align: center;
+  padding: 0.5rem;
+  background-color: #fef2f2;
+  border-radius: 5px;
+  border: 1px solid var(--clr-danger);
+}
+
+.cart-table th {
+  color: var(--clr-text);
+  font-weight: 600;
+  border-bottom: 2px solid var(--clr-shadow-light);
+}
+
+/*Contact*/
+.contact-success {
+  color: #16a34a;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.75rem;
+  background-color: #f0fdf4;
+  border-radius: 5px;
+  border: 1px solid #16a34a;
+}
+
+/*Nav links*/
+nav a {
+  text-decoration: none;
 }

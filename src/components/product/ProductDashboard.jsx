@@ -20,7 +20,7 @@ function ProductDashboard() {
           setProducts(data);
         }
       } catch (err) {
-        setError('Error al cargar los productos');
+        setError('Error loading products');
         console.error(err);
       } finally {
         setLoading(false);
@@ -30,18 +30,18 @@ function ProductDashboard() {
   }, [setProducts]);
 
   const handleDelete = async (id) => {
-    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+    if (confirm('Are you sure you want to delete this product?')) {
       try {
         await deleteProductAPI(id);
         deleteProduct(id);
       } catch (err) {
-        setError('Error al eliminar el producto');
+        setError('Error deleting product');
         console.error(err);
       }
     }
   };
   if (loading) {
-    return <div className="loading">Cargando productos...</div>;
+    return <div className="loading">Loading products...</div>;
   }
 
   if (error) {
@@ -52,8 +52,8 @@ function ProductDashboard() {
       <thead>
         <tr className="dashboard-header">
           <th>ID</th>
-          <th>NOMBRE</th>
-          <th>PRECIO</th>
+          <th>NAME</th>
+          <th>PRICE</th>
           <th>STOCK</th>
           <th>Category</th>
           <th className="dashboard-actions">Actions</th>
@@ -63,7 +63,7 @@ function ProductDashboard() {
         {products.length === 0 ? (
           <tr>
             <td colSpan="5" className="no-data">
-              No hay productos disponibles
+              No products available
             </td>
           </tr>
         ) : (
@@ -81,14 +81,14 @@ function ProductDashboard() {
                     type="button"
                     onClick={() => setSelectedId(product.id)}
                   >
-                    Editar
+                    Edit
                   </button>
                   <button
                     className="btn btn-lilac"
                     type="button"
                     onClick={() => handleDelete(product.id_product || product.id)}
                   >
-                    Eliminar
+                    Delete
                   </button>
                 </td>
               </tr>

@@ -11,7 +11,7 @@ function FormSignup({ onSubmit, loading, error }) {
   return (
     <form className="form-generic" onSubmit={handleSubmit(onSubmit)}>
       {error && <div className="alert-error">{error}</div>}
-      <label htmlFor="name">Nombre Completo</label>
+      <label htmlFor="name">Full Name</label>
       {errors.name && (
         <span role="alert" className="alert-message">
           {errors.name.message}
@@ -21,17 +21,17 @@ function FormSignup({ onSubmit, loading, error }) {
         type="text"
         id="name"
         className={`form-input ${errors.name ? 'input-error' : ''}`}
-        placeholder="Ingresa tu nombre completo"
+        placeholder="Enter your full name"
         {...register('name', {
-          required: 'El nombre es obligatorio',
+          required: 'Name is required',
           minLength: {
             value: 5,
-            message: 'El nombre debe tener al menos 5 caracteres',
+            message: 'Name must be at least 5 characters',
           },
         })}
       />
 
-      <label htmlFor="email">Correo Electrónico</label>
+      <label htmlFor="email">Email Address</label>
       {errors.email && (
         <span role="alert" className="alert-message">
           {errors.email.message}
@@ -41,13 +41,13 @@ function FormSignup({ onSubmit, loading, error }) {
         type="email"
         id="email"
         className={`form-input ${errors.email ? 'input-error' : ''}`}
-        placeholder="Ingresa tu correo"
+        placeholder="Enter your email"
         {...register('email', {
-          required: 'El correo es obligatorio',
+          required: 'Email is required',
         })}
       />
 
-      <label htmlFor="password">Contraseña</label>
+      <label htmlFor="password">Password</label>
       {errors.password && (
         <span role="alert" className="alert-message">
           {errors.password.message}
@@ -57,17 +57,17 @@ function FormSignup({ onSubmit, loading, error }) {
         type="password"
         id="password"
         className={`form-input ${errors.password ? 'input-error' : ''}`}
-        placeholder="Ingresa tu contraseña"
+        placeholder="Enter your password"
         {...register('password', {
-          required: 'La contraseña es obligatoria',
+          required: 'Password is required',
           minLength: {
             value: 8,
-            message: 'La contraseña debe tener al menos 8 caracteres',
+            message: 'Password must be at least 8 characters',
           },
         })}
       />
 
-      <label htmlFor="confirmPass">Confirmar Contraseña</label>
+      <label htmlFor="confirmPass">Confirm Password</label>
       {errors.confirmPass && (
         <span role="alert" className="alert-message">
           {errors.confirmPass.message}
@@ -77,16 +77,16 @@ function FormSignup({ onSubmit, loading, error }) {
         type="password"
         id="confirmPass"
         className={`form-input ${errors.confirmPass ? 'input-error' : ''}`}
-        placeholder="Ingresa tu contraseña"
+        placeholder="Confirm your password"
         {...register('confirmPass', {
-          required: 'La contraseña es obligatoria',
+          required: 'Password confirmation is required',
           validate: (value) =>
-            value === getValues('password') || 'Las contraseñas no coinciden',
+            value === getValues('password') || 'Passwords do not match',
         })}
       />
 
       <button type="submit" className="btn-lilac btn" disabled={loading}>
-        {loading ? 'Creado cuenta...' : 'Registrarse'}
+        {loading ? 'Creating account...' : 'Sign Up'}
       </button>
     </form>
   );

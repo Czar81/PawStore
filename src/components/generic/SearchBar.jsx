@@ -7,12 +7,12 @@ function SearchBar() {
         <input
           className="search"
           type="text"
-          placeholder="Buscar producto..."
+          placeholder="Search product..."
         />
       </div>
       <div className="checkbox-wrapper">
         <input type="checkbox" name="available" id="chk-available" />
-        <label htmlFor="chk-available">Mostrar solo disponibles</label>
+        <label htmlFor="chk-available">Show available only</label>
       </div>
     </div>
   );
